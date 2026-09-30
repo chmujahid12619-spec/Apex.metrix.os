@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ [CH-APEX-MATRIX-OS] ⚡</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- SweetAlert2 for Holographic Modals -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* دنیا کے تمام مروجہ کلر رولز سے مکمل آزادی — نایاب ہولوگرافک میٹل تھیم */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            cursor: crosshair;
+        }
+        body {
+            background-color: #020204;
+            color: #d1d5db;
+            font-family: 'Share Tech Mono', monospace;
+            overflow-x: hidden;
+        }
+        .deep-void-mesh {
+            background-image: radial-gradient(circle at 50% 50%, #0d0614 0%, #020204 100%);
+            position: relative;
+        }
+        /* نایاب غیر روایتی شیڈز */
+        .cyber-cyan { color: #14f7b4; text-shadow: 0 0 12px rgba(20, 247, 180, 0.4); }
+        .holo-purple { color: #a855f7; text-shadow: 0 0 12px rgba(168, 85, 247, 0.4); }
+        .void-border { border: 1px solid rgba(20, 247, 180, 0.15); }
+        
+        /* انوکھا اوربٹ لے آؤٹ — روایتی گرڈ اور کالمز کا مکمل خاتمہ */
+        .constellation-wrapper {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .center-nucleus {
+            background: rgba(2, 2, 4, 0.9);
+            border: 2px solid #14f7b4;
+            box-shadow: 0 0 40px rgba(20, 247, 180, 0.2), inset 0 0 20px rgba(168, 85, 247, 0.2);
+            z-index: 10;
+        }
+        .satellite-node {
+            background: rgba(13, 6, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .satellite-node:hover {
+            border-color: #14f7b4;
+            box-shadow: 0 0 30px rgba(20, 247, 180, 0.3);
+            transform: scale(1.05);
+        }
+        /* گلیچ اور انوکھا انڈیکیٹر لائنز */
+        .vector-line {
+            position: absolute;
+            background: linear-gradient(to right, rgba(20, 247, 180, 0.2), rgba(168, 85, 247, 0.2));
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="deep-void-mesh min-h-screen flex flex-col justify-between p-3 md:p-6">
+
+    <!-- غیر روایتی انکرپٹڈ ہیڈر -->
+    <header class="w-full max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center void-border p-4 bg-black/40 backdrop-blur-md">
+        <div class="tracking-widest text-center sm:text-left">
+            <span class="cyber-cyan text-lg font-bold">// SYSTEM.ARCHITECT:</span>
+            <h1 class="text-xl uppercase tracking-tighter text-white font-black inline-block ml-1">CH MUJAHID HUSSAIN</h1>
+        </div>
+        <div class="text-[11px] text-gray-500 uppercase tracking-widest mt-2 sm:mt-0 flex items-center gap-3">
+            <span>NODE_IDENTIFIER: <span class="holo-purple font-bold">STATE_OS_ALPHA</span></span>
+            <div class="w-2 h-2 bg-[#14f7b4] rounded-none animate-ping"></div>
+        </div>
+    </header>
+
+    <!-- مرکزی کائنلائن اوربٹ سٹرکچر -->
+    <main class="container mx-auto constellation-wrapper my-6 px-4">
+        
+        <!-- گراؤنڈ فلور ویکٹر ڈیکوریشنز -->
+        <div class="hidden lg:block vector-line h-[1px] w-full top-1/2 left-0"></div>
+        <div class="hidden lg:block vector-line w-[1px] h-full left-1/2 top-0"></div>
+
+        <!-- الٹرا کلسٹر انٹرفیس -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl relative z-10">
+            
+            <!-- مرکز مینیو: وزارتِ دفاع و کنٹرول روم -->
+            <div class="satellite-node p-6 flex flex-col justify-between lg:col-span-1 md:col-span-2 group">
+                <div>
+                    <span class="text-[10px] holo-purple tracking-widest block mb-1">[PILL_ALPHA]</span>
+                    <h2 class="text-lg font-bold text-white uppercase tracking-wider mb-2 group-hover:cyber-cyan transition-colors">INTELLIGENT OMNIFLOW NODE</h2>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">Multi-channel autonomous engine routing live data streams directly into cloud structures via Supabase & encrypted webhooks.</p>
+                </div>
+                <a href="https://github.com" target="_blank" class="w-full text-center text-xs uppercase tracking-widest border border-purple-500/30 text-purple-400 py-2 hover:bg-[#a855f7] hover:text-black hover:border-transparent font-bold transition-all">INITIALIZE CONTROL ROOM</a>
+            </div>
+
+            <!-- محکمۂ خارجہ: لگژری ٹریول اینڈ ویزا کمپلائنس -->
+            <div class="satellite-node p-6 flex flex-col justify-between group">
+                <div>
+                    <span class="text-[10px] holo-purple tracking-widest block mb-1">[PILL_BETA]</span>
+                    <h2 class="text-lg font-bold text-white uppercase tracking-wider mb-2 group-hover:cyber-cyan transition-colors">APEX CONCIERGE NETWORK</h2>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">Sovereign travel cluster configuring premium flight vectors, UK visa verification loops, and elite stay architectures.</p>
+                </div>
+                <a href="https://github.com" target="_blank" class="w-full text-center text-xs uppercase tracking-widest border border-purple-500/30 text-purple-400 py-2 hover:bg-[#a855f7] hover:text-black hover:border-transparent font-bold transition-all">ENGAGE CONCIERGE</a>
+            </div>
+
+            <!-- محکمۂ میڈیا و برانڈنگ اثاثے -->
+            <div class="satellite-node p-6 flex flex-col justify-between group">
+                <div>
+                    <span class="text-[10px] holo-purple tracking-widest block mb-1">[PILL_GAMMA]</span>
+                    <h2 class="text-lg font-bold text-white uppercase tracking-wider mb-2 group-hover:cyber-cyan transition-colors">3D MEDIA INFRASTRUCTURE</h2>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">High-resolution B2B vector deployment. Automated news broadcasting templates, breaking tickers, and dynamic brand layers.</p>
+                </div>
+                <a href="https://netlify.app" target="_blank" class="w-full text-center text-xs uppercase tracking-widest border border-purple-500/30 text-purple-400 py-2 hover:bg-[#a855f7] hover:text-black hover:border-transparent font-bold transition-all">INJECT MEDIA ASSETS</a>
+            </div>
+
+            <!-- مائیکرو ساس اور کلاؤڈ سسٹمز -->
+            <div class="satellite-node p-6 flex flex-col justify-between group">
+                <div>
+                    <span class="text-[10px] holo-purple tracking-widest block mb-1">[PILL_DELTA]</span>
+                    <h2 class="text-lg font-bold text-white uppercase tracking-wider mb-2 group-hover:cyber-cyan transition-colors">SOVEREIGN VIRTUAL ARCHITECTURE</h2>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">Termux-optimized microservices managing secure Cloudflare gateways and distributed server clusters globally.</p>
+                </div>
+                <button onclick="triggerDataPack()" class="w-full text-center text-xs uppercase tracking-widest border border-purple-500/30 text-purple-400 py-2 hover:bg-[#a855f7] hover:text-black hover:border-transparent font-bold transition-all">TEST VIRTUAL HUB</button>
+            </div>
+
+            <!-- یوٹیلیٹیز اور انٹیلیجنس لیبز -->
+            <div class="satellite-node p-6 flex flex-col justify-between group">
+                <div>
+                    <span class="text-[10px] holo-purple tracking-widest block mb-1">[PILL_EPSILON]</span>
+                    <h2 class="text-lg font-bold text-white uppercase tracking-wider mb-2 group-hover:cyber-cyan transition-colors">ARTIFACT ENGINE LAB</h2>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">Automated localized micro-applications, automated resume parsing architectures, and digital security labs.</p>
+                </div>
+                <a href="https://lovable.dev" target="_blank" class="w-full text-center text-xs uppercase tracking-widest border border-purple-500/30 text-purple-400 py-2 hover:bg-[#a855f7] hover:text-black hover:border-transparent font-bold transition-all">DECRYPT ARTIFACTS</a>
+            </div>
+
+            <!-- انکرپٹڈ سیکیور فیڈ بیک لوپ (فارم) -->
+            <div class="satellite-node p-6 bg-black/80 void-border flex flex-col justify-between">
+                <div>
+                    <span class="text-[10px] cyber-cyan tracking-widest block mb-1">[SECURE_INGESTION_TUNNEL]</span>
+                    <h2 class="text-sm font-bold text-white uppercase tracking-widest mb-3">// MATRIX DIRECT OUTREACH</h2>
+                </div>
+                <form id="secureForm" class="space-y-2">
+                    <input type="text" id="nodeName" placeholder="[ORGN_NAME]" required class="w-full bg-[#020204] border border-purple-500/20 px-3 py-2 text-xs focus:outline-none focus:border-[#14f7b4] text-[#14f7b4]">
+                    <input type="text" id="nodeContact" placeholder="[SECURE_WHATSAPP]" required class="w-full bg-[#020204] border border-purple-500/20 px-3 py-2 text-xs focus:outline-none focus:border-[#14f7b4] text-[#14f7b4]">
+                    <textarea id="nodeData" rows="2" placeholder="[COMMUNICATION_PAYLOAD...]" required class="w-full bg-[#020204] border border-purple-500/20 px-3 py-2 text-xs focus:outline-none focus:border-[#14f7b4] text-[#14f7b4]"></textarea>
+                    <button type="submit" class="w-full text-center text-xs uppercase tracking-widest border border-emerald-500/40 text-emerald-400 py-2 hover:bg-[#14f7b4] hover:text-black hover:border-transparent font-bold transition-all">STREAM DATA</button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- فوٹر -->
+    <footer class="w-full max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center void-border p-3 bg-black/40 text-[10px] text-gray-500 uppercase tracking-widest gap-2">
+        <span>MATRIX STATUS: SECURE // NO TRADITIONAL COLOR PROTOCOLS APPLIED.</span>
+        <span>PULSE: +92 326 9447550 // chmujahid12619@gmail.com</span>
+    </footer>
+
+    <!-- جاوا اسکرپٹ لاجک -->
+    <script>
+        function triggerDataPack() {
+            Swal.fire({
+                title: '[VECTORS_SYNCHRONIZED]',
+                text: 'Termux microservices and Cloudflare firewalls running on completely isolated state layers.',
+                icon: 'info',
+                background: '#020204',
+                color: '#14f7b4',
+                confirmButtonColor: '#a855f7',
+                iconColor: '#14f7b4',
+                customClass: { popup: 'border border-purple-900 rounded-none' }
+            });
+        }
+
+        document.getElementById('secureForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: '[DATA_STREAM_SUCCESS]',
+                text: 'Your metadata has bypassed standard nodes and injected directly into Supabase central architecture.',
+                icon: 'success',
+                background: '#020204',
+                color: '#14f7b4',
+                confirmButtonColor: '#14f7b4',
+                iconColor: '#14f7b4',
+                customClass: { popup: 'border border-emerald-900 rounded-none' }
+            });
+            this.reset();
+        });
+    </script>
+</body>
+</html>
