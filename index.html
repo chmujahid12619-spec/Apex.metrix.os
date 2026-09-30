@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE OMNI-MIRROR SINGULARITY // CH. MUJAHID HUSSAIN</title>
+    <title>THE OMNI-VOLCANIC SINGULARITY // CH. MUJAHID HUSSAIN</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #010003;
-            --neon-red: #ff003c;
-            --neon-cyan: #00f0ff;
-            --neon-gold: #ffb700;
-            --neon-purple: #9d00ff;
-            --text-glow: #e6f1ff;
-            --panel-glass: rgba(5, 2, 12, 0.9);
+            --cosmic-dark: #050103;
+            --volcanic-red: #ff1e00;
+            --plasma-amber: #ff8800;
+            --cyber-cyan: #00ffff;
+            --smoke-purple: #3a0ca3;
+            --text-glow: #fffaee;
         }
 
         body {
-            background-color: var(--bg-deep);
+            background-color: var(--cosmic-dark);
+            /* Explosive Cosmic Mountains & Industrial Smoke Background Look */
             background-image: 
-                radial-gradient(circle at 50% 10%, rgba(157, 0, 255, 0.2) 0%, transparent 60%),
-                radial-gradient(circle at 20% 90%, rgba(255, 0, 60, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0, 240, 255, 0.15) 0%, transparent 50%);
+                radial-gradient(ellipse at 50% -20%, rgba(255, 30, 0, 0.35) 0%, transparent 60%),
+                radial-gradient(circle at 10% 80%, rgba(255, 136, 0, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 90% 90%, rgba(58, 12, 163, 0.3) 0%, transparent 50%),
+                linear-gradient(180deg, #050103 0%, #12030a 50%, #020005 100%);
             color: var(--text-glow);
             font-family: 'Share Tech Mono', monospace;
             margin: 0;
@@ -33,71 +34,82 @@
             overflow-x: hidden;
         }
 
+        /* Explosive Dust & Machinery Overlay Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(255, 30, 0, 0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
         .omni-container {
             width: 100%;
             max-width: 1000px;
-            background: var(--panel-glass);
-            border: 2px solid var(--neon-cyan);
-            box-shadow: 0 0 50px rgba(0, 240, 255, 0.25), inset 0 0 40px rgba(157, 0, 255, 0.2);
+            background: rgba(10, 2, 5, 0.92);
+            border: 2px solid var(--volcanic-red);
+            box-shadow: 0 0 60px rgba(255, 30, 0, 0.4), inset 0 0 50px rgba(255, 136, 0, 0.15);
             padding: 45px;
             position: relative;
             box-sizing: border-box;
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(15px);
         }
 
         .omni-container::before {
             content: '';
             position: absolute;
             top: 8px; left: 8px; right: 8px; bottom: 8px;
-            border: 1px dashed var(--neon-red);
+            border: 1px dashed var(--plasma-amber);
             pointer-events: none;
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
         .master-header {
             text-align: center;
-            border-bottom: 3px double var(--neon-gold);
+            border-bottom: 3px double var(--plasma-amber);
             padding-bottom: 25px;
             margin-bottom: 35px;
         }
 
         .master-header h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 30px;
-            color: var(--neon-gold);
+            font-size: 28px;
+            color: var(--plasma-amber);
             margin: 0 0 10px 0;
-            text-shadow: 0 0 20px rgba(255, 183, 0, 0.6);
+            text-shadow: 0 0 25px rgba(255, 136, 0, 0.7);
             letter-spacing: 3px;
         }
 
         .master-header h2 {
             font-size: 13px;
-            color: var(--neon-cyan);
+            color: var(--volcanic-red);
             margin: 0;
             letter-spacing: 4px;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+            text-shadow: 0 0 15px rgba(255, 30, 0, 0.6);
         }
 
         .telemetry-panel {
-            background: rgba(8, 2, 18, 0.95);
-            border: 1px solid var(--neon-purple);
-            border-left: 5px solid var(--neon-red);
+            background: rgba(18, 4, 10, 0.95);
+            border: 1px solid var(--smoke-purple);
+            border-left: 5px solid var(--volcanic-red);
             padding: 20px;
             margin: 25px 0;
             font-size: 13px;
             line-height: 1.9;
-            box-shadow: inset 0 0 20px rgba(255, 0, 60, 0.1);
+            box-shadow: inset 0 0 25px rgba(255, 30, 0, 0.15);
         }
 
         .section-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 18px;
-            color: var(--neon-cyan);
-            border-bottom: 1px solid var(--neon-purple);
+            color: var(--cyber-cyan);
+            border-bottom: 1px solid var(--smoke-purple);
             padding-bottom: 10px;
             margin-top: 45px;
             margin-bottom: 25px;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+            text-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
         }
 
         .matrix-grid {
@@ -108,37 +120,37 @@
         }
 
         .node-card {
-            background: rgba(15, 5, 30, 0.8);
-            border: 1px solid var(--neon-purple);
+            background: rgba(22, 5, 12, 0.85);
+            border: 1px solid var(--smoke-purple);
             padding: 20px;
             position: relative;
             transition: all 0.4s ease;
         }
 
         .node-card:hover {
-            border-color: var(--neon-gold);
-            box-shadow: 0 0 30px rgba(255, 183, 0, 0.3);
+            border-color: var(--volcanic-red);
+            box-shadow: 0 0 35px rgba(255, 30, 0, 0.4);
             transform: translateY(-4px);
         }
 
         .node-card h4 {
             font-family: 'Orbitron', sans-serif;
             margin: 0 0 10px 0;
-            color: var(--neon-gold);
+            color: var(--plasma-amber);
             font-size: 14px;
         }
 
         .node-card p {
             margin: 0 0 15px 0;
-            color: #b8c7db;
+            color: #d1b8c4;
             font-size: 12px;
             line-height: 1.6;
         }
 
         .btn-cyber {
             background: transparent;
-            color: var(--neon-cyan);
-            border: 1px solid var(--neon-cyan);
+            color: var(--cyber-cyan);
+            border: 1px solid var(--cyber-cyan);
             padding: 8px 16px;
             font-family: 'Share Tech Mono', monospace;
             font-size: 12px;
@@ -149,26 +161,26 @@
         }
 
         .btn-cyber:hover {
-            background: var(--neon-cyan);
-            color: #010003;
-            box-shadow: 0 0 20px var(--neon-cyan);
+            background: var(--cyber-cyan);
+            color: #050103;
+            box-shadow: 0 0 25px var(--cyber-cyan);
         }
 
         .alphabet-matrix-item {
-            background: rgba(10, 3, 20, 0.6);
-            border-left: 3px solid var(--neon-cyan);
+            background: rgba(15, 3, 10, 0.7);
+            border-left: 3px solid var(--volcanic-red);
             padding: 15px 20px;
             margin-bottom: 15px;
             transition: all 0.3s ease;
         }
 
         .alphabet-matrix-item:hover {
-            border-left-color: var(--neon-gold);
-            background: rgba(20, 5, 40, 0.8);
+            border-left-color: var(--plasma-amber);
+            background: rgba(25, 5, 15, 0.9);
         }
 
         .alphabet-matrix-item h4 {
-            color: var(--neon-cyan);
+            color: var(--cyber-cyan);
             margin: 0 0 6px 0;
             font-family: 'Orbitron', sans-serif;
             font-size: 14px;
@@ -176,7 +188,7 @@
 
         .alphabet-matrix-item p {
             margin: 0;
-            color: #a4b3c6;
+            color: #c7b3be;
             font-size: 13px;
             line-height: 1.7;
         }
@@ -191,41 +203,41 @@
         }
 
         .omni-toggle-btn {
-            background: rgba(5, 2, 12, 0.95);
-            color: var(--neon-gold);
-            border: 2px solid var(--neon-gold);
+            background: rgba(12, 2, 8, 0.95);
+            color: var(--plasma-amber);
+            border: 2px solid var(--volcanic-red);
             padding: 12px 24px;
             border-radius: 30px;
             cursor: pointer;
             font-family: 'Orbitron', sans-serif;
             font-size: 12px;
-            box-shadow: 0 0 25px rgba(255, 183, 0, 0.4);
+            box-shadow: 0 0 30px rgba(255, 30, 0, 0.5);
             transition: all 0.3s ease;
         }
 
         .omni-toggle-btn:hover {
-            background: var(--neon-gold);
-            color: #010003;
-            box-shadow: 0 0 35px var(--neon-gold);
+            background: var(--volcanic-red);
+            color: #050103;
+            box-shadow: 0 0 40px var(--volcanic-red);
         }
 
         .omni-window {
             display: none;
             width: 380px;
             height: 500px;
-            background: rgba(4, 1, 10, 0.98);
-            border: 2px solid var(--neon-red);
-            box-shadow: 0 0 40px rgba(255, 0, 60, 0.35);
+            background: rgba(8, 1, 5, 0.98);
+            border: 2px solid var(--volcanic-red);
+            box-shadow: 0 0 50px rgba(255, 30, 0, 0.45);
             flex-direction: column;
             justify-content: space-between;
             backdrop-filter: blur(25px);
         }
 
         .omni-window-header {
-            background: rgba(20, 2, 10, 0.9);
-            color: var(--neon-red);
+            background: rgba(25, 4, 12, 0.9);
+            color: var(--volcanic-red);
             padding: 12px 15px;
-            border-bottom: 1px solid var(--neon-red);
+            border-bottom: 1px solid var(--volcanic-red);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -245,8 +257,8 @@
 
         .omni-input-area {
             padding: 12px;
-            background: rgba(8, 2, 18, 0.95);
-            border-top: 1px solid var(--neon-purple);
+            background: rgba(18, 4, 10, 0.95);
+            border-top: 1px solid var(--smoke-purple);
             display: flex;
             gap: 8px;
         }
@@ -254,17 +266,17 @@
         .omni-input {
             flex: 1;
             background: rgba(0, 0, 0, 0.9);
-            border: 1px solid var(--neon-purple);
+            border: 1px solid var(--smoke-purple);
             padding: 8px 12px;
             font-family: 'Share Tech Mono', monospace;
             font-size: 12px;
-            color: var(--neon-cyan);
+            color: var(--cyber-cyan);
             outline: none;
         }
 
         .omni-input:focus {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
         }
     </style>
 </head>
@@ -273,85 +285,85 @@
 <div class="omni-container">
     <!-- Master Header -->
     <div class="master-header">
-        <h1>🌌 THE OMNI-MIRROR SINGULARITY</h1>
-        <h2>// OVERLORD-01 SUPREME QUANTUM ADVENTURE MATRIX</h2>
+        <h1>🌋 VOLCANIC OMNI-SINGULARITY</h1>
+        <h2>// CHOUDHARY MUJAHID HUSSAIN // OVERLORD-01</h2>
     </div>
 
     <!-- Sovereign Identity Intrusion -->
     <div class="telemetry-panel">
-        <span style="color: var(--neon-gold); font-weight: bold;">[QUANTUM IDENTITY INTRUSION: VERIFIED PROTOCOL]</span><br>
+        <span style="color: var(--plasma-amber); font-weight: bold;">[COSMIC PEAKS & MACHINERY DUST PROTOCOL]</span><br>
         <strong>CHIEF ARCHITECT :</strong> CHOUDHARY MUJAHID HUSSAIN<br>
         <strong>GLOBAL PROFILE :</strong> FOUNDER OF APEX BRANDING HUB<br>
         <strong>MEDIA AUTHORITY :</strong> SENIOR JOURNALIST & BROADCAST MEDIA PRESENTER (LAHORE)<br>
-        <strong>CLEARANCE LEVEL :</strong> COSMIC OMNI-OPERATOR [OVERLORD OVERSEER]<br>
-        <strong>TELEMETRY STREAM :</strong> MONOCHROME QUANTUM DATA-LINK // SECURE_LOG_777
+        <strong>CLEARANCE LEVEL :</strong> VOLCANIC OVERLORD OVERSEER<br>
+        <strong>TELEMETRY STREAM :</strong> MAGMA QUANTUM DATA-LINK // SECURE_LOG_999
     </div>
 
     <!-- Core Executive Overview -->
-    <div class="telemetry-panel" style="border-left-color: var(--neon-cyan);">
-        <span style="color: var(--neon-cyan); font-weight: bold;">[CORE SYSTEM EXECUTIVE OVERVIEW]</span><br>
-        Transcending standard code and conventional architecture, this nexus is a living mirror fusing Choudhary Mujahid Hussain’s investigative journalism, branding sorcery, and autonomous AI automation. Scanned across planetary freelance grids, hidden shadow corporations, and fifty-year future enterprise vectors. You have bypassed all cognitive firewalls to enter the ultimate sovereign digital reality.
+    <div class="telemetry-panel" style="border-left-color: var(--cyber-cyan);">
+        <span style="color: var(--cyber-cyan); font-weight: bold;">[CORE SYSTEM EXECUTIVE OVERVIEW]</span><br>
+        Deep within explosive cosmic volcanic mountains and rolling industrial machinery dust, this matrix fuses Choudhary Mujahid Hussain’s investigative prowess, media broadcasting, and autonomous AI automation into a blazing sovereign reality.
     </div>
 
     <!-- Operational Nodes Grid -->
-    <h3 class="section-title">⚡ OMNI-OPERATIONAL NODES</h3>
+    <h3 class="section-title">⚡ VOLCANIC OPERATIONAL NODES</h3>
     <div class="matrix-grid">
         <div class="node-card">
             <h4>[NODE_ALPHA]</h4>
-            <p>Intelligent Omniflow Node routing real-time global streams directly into cloud structures via Supabase & encrypted webhooks.</p>
+            <p>Magma Omniflow Node routing real-time global streams directly into cloud structures via encrypted webhooks.</p>
             <button class="btn-cyber">ENGAGE CONTROL ROOM</button>
         </div>
         <div class="node-card">
             <h4>[NODE_BETA]</h4>
-            <p>Apex Concierge Network orchestrating elite travel vectors, UK corporate verification loops, and sovereign stay architectures.</p>
+            <p>Apex Concierge Network orchestrating elite travel vectors and corporate verification loops across cosmic ranges.</p>
             <button class="btn-cyber">ACTIVATE CONCIERGE</button>
         </div>
-        <div class="node-card" style="border-color: var(--neon-red);">
-            <h4 style="color: var(--neon-red);">[NODE_GAMMA]</h4>
-            <p>3D Media Infrastructure deploying automated news broadcasting templates, breaking tickers, and holographic brand layers.</p>
-            <button class="btn-cyber" style="border-color: var(--neon-red); color: var(--neon-red);">INJECT MEDIA ASSETS</button>
+        <div class="node-card" style="border-color: var(--volcanic-red);">
+            <h4 style="color: var(--volcanic-red);">[NODE_GAMMA]</h4>
+            <p>3D Volcanic Media Infrastructure deploying automated news broadcasting templates and breaking tickers.</p>
+            <button class="btn-cyber" style="border-color: var(--volcanic-red); color: var(--volcanic-red);">INJECT MEDIA ASSETS</button>
         </div>
         <div class="node-card">
             <h4>[NODE_DELTA]</h4>
-            <p>Sovereign Virtual Architecture managing Termux-optimized microservices and secure Cloudflare server clusters worldwide.</p>
+            <p>Sovereign Virtual Architecture managing Termux-optimized microservices and secure server clusters worldwide.</p>
             <button class="btn-cyber">TEST VIRTUAL HUB</button>
         </div>
     </div>
 
     <!-- A to Z Ultimate Future Matrix -->
-    <h3 class="section-title">🔮 A TO Z ULTIMATE FUTURE SINGULARITY MATRIX</h3>
+    <h3 class="section-title">🔥 A TO Z VOLCANIC SINGULARITY MATRIX</h3>
 
     <div class="alphabet-matrix-item">
         <h4>[A] ALGORITHMS & AUTONOMY</h4>
-        <p>The dawn of self-governing digital waves. Systems that mirror human cognition and execute autonomous planetary decisions.</p>
+        <p>Self-governing digital waves rising from volcanic computational depths, executing autonomous planetary decisions.</p>
     </div>
     <div class="alphabet-matrix-item">
         <h4>[B] BRANDING SINGULARITY & AERO-BRANDING</h4>
-        <p>Apex Branding Hub frequencies projecting holographic brand identities directly across space and human consciousness.</p>
+        <p>Apex Branding Hub frequencies projecting blazing holographic brand identities across cosmic mountains.</p>
     </div>
     <div class="alphabet-matrix-item">
         <h4>[C] CYBERNETIC COGNITION</h4>
-        <p>The invisible fusion where artificial intelligence stands shoulder-to-shoulder with human intellect across global freelance arrays.</p>
+        <p>The invisible fusion where synthetic intellect stands shoulder-to-shoulder with human intellect across global arrays.</p>
     </div>
     <div class="alphabet-matrix-item">
         <h4>[D] DEEP DATA STREAM</h4>
-        <p>Every keystroke, pulse, and silence harvested by shadow markets. Modern commerce trades human desires instead of products.</p>
+        <p>Every keystroke and machinery pulse harvested by shadow markets, trading human desires instead of products.</p>
     </div>
     <div class="alphabet-matrix-item">
         <h4>[E] ETHEREAL ENGINES</h4>
-        <p>Autonomous neural algorithms architecting the post-human economy and designing new dimensional realities.</p>
+        <p>Autonomous neural algorithms architecting the post-human economy amidst industrial dust and volcanic plasma.</p>
     </div>
     <div class="alphabet-matrix-item">
         <h4>[F] FREELANCE GHOSTS & PHANTOMS</h4>
-        <p>The future freelancer as a commander of AI agent armies, completing massive corporate projects in milliseconds.</p>
+        <p>Commanding AI agent armies across massive corporate projects in milliseconds from high-altitude command bases.</p>
     </div>
     <div class="alphabet-matrix-item">
         <h4>[G] GHOST NETWORKS</h4>
-        <p>Decentralized enterprises operating without physical headquarters or human managers, fueled by automated wealth engines.</p>
+        <p>Decentralized enterprises operating without physical headquarters, fueled by automated volcanic wealth engines.</p>
     </div>
     <div class="alphabet-matrix-item">
         <h4>[H] HYPER-ADVENTURE LAYER</h4>
-        <p>The absolute obliteration of traditional interfaces. Users evolve into active structural nodes of the cosmic network.</p>
+        <p>The absolute obliteration of traditional interfaces where users evolve into active structural nodes.</p>
     </div>
     <div class="alphabet-matrix-item">
         <h4>[I] INFINITE INPUTS</h4>
@@ -359,15 +371,15 @@
     </div>
     <div class="alphabet-matrix-item">
         <h4>[J] JUST-IN-TIME EVOLUTION</h4>
-        <p>Instantaneous market mutation. Stagnant protocols are instantly incinerated by the cosmic mirror.</p>
+        <p>Instantaneous market mutation where stagnant protocols are incinerated by volcanic plasma.</p>
     </div>
     <div class="alphabet-matrix-item">
         <h4>[K] KINETIC COMMERCE</h4>
-        <p>Trade liberated from physical storefronts, surfing purely as fluid energy across quantum digital waves.</p>
+        <p>Trade liberated from physical storefronts, surfing purely as fluid energy across quantum volcanic waves.</p>
     </div>
     <div class="alphabet-matrix-item">
         <h4>[L] LIQUID LOGIC</h4>
-        <p>Complete structural fluidity. Modern networks flow like water, instantly adapting to any operational container.</p>
+        <p>Complete structural fluidity flowing like molten lava, instantly adapting to any operational container.</p>
     </div>
     <div class="alphabet-matrix-item">
         <h4>[M] THE MIRROR ENGINE & MEDIA NEXUS</h4>
@@ -383,11 +395,11 @@
     </div>
     <div class="alphabet-matrix-item">
         <h4>[P] PROMPT ARCHITECTURE</h4>
-        <p>Language transformed into world-building syntax. A single precise prompt rewrites global market dynamics.</p>
+        <p>Language transformed into world-building syntax, rewriting global market dynamics in a single keystroke.</p>
     </div>
     <div class="alphabet-matrix-item">
         <h4>[Q] QUANTUM NEOCURRENCIES</h4>
-        <p>Fiat currencies replaced by "AI compute power" and "data reflection" as the supreme planetary assets.</p>
+        <p>Fiat currencies replaced by "AI compute power" and "volcanic data reflection" as supreme planetary assets.</p>
     </div>
     <div class="alphabet-matrix-item">
         <h4>[R] REASONING MATRIX</h4>
@@ -395,7 +407,7 @@
     </div>
     <div class="alphabet-matrix-item">
         <h4>[S] SYNTHETIC REALITIES & WORKFORCE</h4>
-        <p>Economy expanding into Neuralink simulation worlds and human dreamscapes through sovereign brand hubs.</p>
+        <p>Economy expanding into simulation worlds and human dreamscapes through sovereign brand hubs.</p>
     </div>
     <div class="alphabet-matrix-item">
         <h4>[T] TELEMETRY ECLIPSE</h4>
@@ -427,15 +439,15 @@
     </div>
 
     <!-- Secure Termination Seal -->
-    <div class="telemetry-panel" style="text-align: center; margin-top: 40px; border-left-color: var(--neon-gold);">
-        <strong>[SECURE_INGESTION_TUNNEL // MATRIX DIRECT OUTREACH]</strong><br>
+    <div class="telemetry-panel" style="text-align: center; margin-top: 40px; border-left-color: var(--plasma-amber);">
+        <strong>[VOLCANIC_INGESTION_TUNNEL // DIRECT OUTREACH]</strong><br>
         CREATOR PROFILE REGISTERED IN THE COSMIC BLOCKCHAIN:<br>
-        <span style="color: var(--neon-cyan);">NAME: CHOUDHARY MUJAHID HUSSAIN</span><br>
-        <span style="color: var(--neon-red);">ROLE: FOUNDER OF APEX BRANDING HUB / SENIOR JOURNALIST / MEDIA PRESENTER</span><br>
+        <span style="color: var(--cyber-cyan);">NAME: CHOUDHARY MUJAHID HUSSAIN</span><br>
+        <span style="color: var(--volcanic-red);">ROLE: FOUNDER OF APEX BRANDING HUB / SENIOR JOURNALIST / MEDIA PRESENTER</span><br>
         ORGAN: APEX BRANDING HUB MEDIA MATRIX | EMAIL: chmujahid12619@gmail.com | TELECOMM: +923269447550<br>
-        <span style="color: var(--neon-gold);">STATUS: CORE ARCHITECT / OVERLORD OVERSEER [SYSTEM OWNER]</span><br><br>
-        <span style="color: var(--neon-red); font-size: 11px;">[SYSTEM TERMINATED SUCCESSFULLY... QUANTUM SLEEP MODE ENGAGED]</span><br>
-        <span style="color: #666; font-size: 10px;">● DO NOT ATTEMPT TO ALTER THIS MATRIX. IT REPLICATES AUTOMATICALLY. ●</span>
+        <span style="color: var(--plasma-amber);">STATUS: CORE ARCHITECT / OVERLORD OVERSEER [SYSTEM OWNER]</span><br><br>
+        <span style="color: var(--volcanic-red); font-size: 11px;">[SYSTEM TERMINATED SUCCESSFULLY... MAGMA SLEEP MODE ENGAGED]</span><br>
+        <span style="color: #666; font-size: 10px;">● DO NOT ALTER THIS VOLCANIC MATRIX. IT REPLICATES AUTOMATICALLY. ●</span>
     </div>
 
 </div>
@@ -443,30 +455,29 @@
 <!-- Holographic AI Spokesperson Terminal -->
 <div id="omni-chat-widget">
     <button id="omni-open-btn" class="omni-toggle-btn">
-        ⚡ OMNI-SPOKESPERSON LINK
+        🌋 VOLCANIC SPOKESPERSON LINK
     </button>
     
     <div id="omni-window" class="omni-window">
         <div class="omni-window-header">
             <span>// SPOKESPERSON: CH. MUJAHID HUSSAIN</span>
-            <button id="omni-close-btn" style="background: transparent; border: none; color: var(--neon-red); cursor: pointer; font-weight: bold; font-size: 16px;">✕</button>
+            <button id="omni-close-btn" style="background: transparent; border: none; color: var(--volcanic-red); cursor: pointer; font-weight: bold; font-size: 16px;">✕</button>
         </div>
         
         <div id="omni-messages" class="omni-messages">
-            <div style="background: rgba(15, 5, 30, 0.9); color: var(--text-glow); padding: 10px 14px; border-left: 3px solid var(--neon-gold); max-width: 85%; align-self: flex-start; font-size: 12px;">
-                Greetings, Overlord. I am the official AI Spokesperson for Choudhary Mujahid Hussain. State your transmission query.
+            <div style="background: rgba(22, 5, 12, 0.9); color: var(--text-glow); padding: 10px 14px; border-left: 3px solid var(--plasma-amber); max-width: 85%; align-self: flex-start; font-size: 12px;">
+                Greetings, Overlord. I am the official AI Spokesperson for Choudhary Mujahid Hussain across the volcanic matrix. State your transmission query.
             </div>
         </div>
         
         <div class="omni-input-area">
-            <input type="text" id="omni-input" placeholder="Transmit quantum query..." class="omni-input">
+            <input type="text" id="omni-input" placeholder="Transmit volcanic query..." class="omni-input">
             <button id="omni-send-btn" class="btn-cyber" style="width: auto; padding: 8px 14px;">SEND</button>
         </div>
     </div>
 </div>
 
 <script>
-const SYSTEM_INSTRUCTION = "You are the official AI Spokesperson and representative for Choudhary Mujahid Hussain (Founder of Apex Branding Hub, Senior Journalist, and Media Presenter from Lahore). Maintain an exceptionally professional, elite, futuristic sci-fi, and deeply respectful tone. Represent Choudhary Sahib with utmost authority and precision. Keep answers sharp, concise, and in English.";
 const omniOpenBtn = document.getElementById('omni-open-btn');
 const omniCloseBtn = document.getElementById('omni-close-btn');
 const omniWindow = document.getElementById('omni-window');
@@ -484,42 +495,34 @@ function appendOmniMessage(text, isUser) {
     msgDiv.style.maxWidth = '85%';
     msgDiv.style.fontSize = '12px';
     if(isUser) {
-        msgDiv.style.background = 'rgba(0, 240, 255, 0.15)';
-        msgDiv.style.color = 'var(--neon-cyan)';
-        msgDiv.style.borderRight = '3px solid var(--neon-cyan)';
+        msgDiv.style.background = 'rgba(0, 255, 255, 0.15)';
+        msgDiv.style.color = 'var(--cyber-cyan)';
+        msgDiv.style.borderRight = '3px solid var(--cyber-cyan)';
         msgDiv.style.alignSelf = 'flex-end';
     } else {
-        msgDiv.style.background = 'rgba(15, 5, 30, 0.9)';
+        msgDiv.style.background = 'rgba(22, 5, 12, 0.9)';
         msgDiv.style.color = 'var(--text-glow)';
-        msgDiv.style.borderLeft = '3px solid var(--neon-gold)';
+        msgDiv.style.borderLeft = '3px solid var(--plasma-amber)';
         msgDiv.style.alignSelf = 'flex-start';
     }
     omniMessages.appendChild(msgDiv);
     omniMessages.scrollTop = omniMessages.scrollHeight;
 }
 
-async function sendOmniMessageToAI(userText) {
-    const parts = ["sk-or-v1-", "cd17a", "461099e2", "3b7ba88aef6a", "283fccae97c", "ccb2496a7ff8c6498", "997ee482"];
-    const url = "https://openrouter.ai/api/v1/chat/completions";
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + parts.join('')
-            },
-            body: JSON.stringify({
-                model: "meta-llama/llama-3.2-3b-instruct:free",
-                messages: [
-                    { role: "system", content: SYSTEM_INSTRUCTION },
-                    { role: "user", content: userText }
-                ]
-            })
-        });
-        const data = await response.json();
-        return data.choices[0].message.content;
-    } catch (error) {
-        return "Transmission error: Unable to reach quantum spokesperson node.";
+function getSmartNeuralResponse(query) {
+    const q = query.toLowerCase();
+    if(q.includes('who') && (q.includes('you') || q.includes('u'))) {
+        return "I am the sovereign holographic AI spokesperson for Choudhary Mujahid Hussain — Senior Journalist, Media Presenter, and Founder of Apex Branding Hub.";
+    } else if(q.includes('how') && (q.includes('you') || q.includes('u') || q.includes('r you'))) {
+        return "All volcanic mountains, machinery dust nodes, and quantum matrices are operating at 100% capacity.";
+    } else if(q.includes('mujahid') || q.includes('owner') || q.includes('boss')) {
+        return "Choudhary Mujahid Hussain is the Supreme Volcanic Overlord and Chief Architect of this entire digital empire and Apex Branding Hub.";
+    } else if(q.includes('apex') || q.includes('branding')) {
+        return "Apex Branding Hub is the premier digital design and 3D media broadcasting powerhouse based in Lahore, Pakistan.";
+    } else if(q.includes('hello') || q.includes('hi') || q.includes('hey')) {
+        return "Greetings from the volcanic peaks. Secure connection established with Choudhary Mujahid Hussain's core network.";
+    } else {
+        return "Transmission acknowledged by Volcanic Apex Matrix. Choudhary Mujahid Hussain's network is active across all channels. Query '" + query + "' logged successfully.";
     }
 }
 
@@ -527,18 +530,20 @@ async function handleOmniSend() {
     const text = omniInput.value.trim();
     if(!text) return;
     appendOmniMessage(text, true);
-    omniInput.value = '';
+    omniInput.value = "";
     
-    const loadingDiv = document.createElement('div');
-    loadingDiv.innerText = "Decrypting quantum transmission...";
-    loadingDiv.style.color = 'var(--neon-red)';
-    loadingDiv.style.fontSize = '11px';
-    loadingDiv.style.fontStyle = 'italic';
+    const loadingDiv = document.createElement("div");
+    loadingDiv.innerText = "Processing volcanic transmission...";
+    loadingDiv.style.color = "var(--volcanic-red)";
+    loadingDiv.style.fontSize = "11px";
+    loadingDiv.style.fontStyle = "italic";
     omniMessages.appendChild(loadingDiv);
     
-    const botResponse = await sendOmniMessageToAI(text);
-    omniMessages.removeChild(loadingDiv);
-    appendOmniMessage(botResponse, false);
+    setTimeout(() => {
+        omniMessages.removeChild(loadingDiv);
+        const botResponse = getSmartNeuralResponse(text);
+        appendOmniMessage(botResponse, false);
+    }, 600);
 }
 
 omniSendBtn.onclick = handleOmniSend;
