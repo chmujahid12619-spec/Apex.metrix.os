@@ -1,422 +1,473 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="ur" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System.Architect // Ch Mujahid Hussain</title>
+    <title>کتابِ کائنات // چودھری مجاہد حسین</title>
+    <!-- جمیل نوری نستعلیق اور کلاسک فونٹ امپورٹ -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* ہائپر-ایڈوانسڈ سائبر پنک مونوکروم تھیم */
+        :root {
+            --book-bg: #fdfbf7;
+            --book-border: #d4c5b9;
+            --book-text: #2c221e;
+            --gold-accent: #b8860b;
+            --deep-brown: #3e2723;
+            --parchment: #f4ecdf;
+        }
+
         body {
-            background-color: #05020a;
-            color: #ffffff;
-            font-family: monospace;
-            padding: 20px;
+            background-color: #2b231d;
+            background-image: radial-gradient(circle, #3d3129 0%, #1f1814 100%);
+            color: var(--book-text);
+            font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
             margin: 0;
-            line-height: 1.6;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
-        .container {
+
+        /* کتاب کی ظاہری جلد اور بائنڈنگ کا فریم */
+        .book-container {
+            width: 100%;
             max-width: 900px;
-            margin: 0 auto;
+            background: var(--book-bg);
+            background-image: linear-gradient(to right, #e8dfd1 0%, var(--book-bg) 5%, var(--book-bg) 95%, #e8dfd1 100%);
+            border: 3px double var(--gold-accent);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8), inset 0 0 40px rgba(184,134,11,0.1);
+            padding: 50px 60px;
+            position: relative;
+            box-sizing: border-box;
         }
-        .header {
-            border: 1px solid #00ff66;
-            padding: 25px;
-            background: #0b0716;
-            box-shadow: 0 0 20px rgba(0,255,102,0.15);
-            margin-bottom: 25px;
+
+        /* کتاب کے صفحے کا اندرونی سنہری حشیہ */
+        .book-container::before {
+            content: '';
+            position: absolute;
+            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 1px solid var(--gold-accent);
+            pointer-events: none;
+            opacity: 0.6;
         }
-        .card {
-            border: 1px solid #a855f7;
-            background: #0b0716;
+
+        .page-header {
+            text-align: center;
+            border-bottom: 2px solid var(--gold-accent);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            color: var(--deep-brown);
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+
+        .page-header h2 {
+            font-size: 16px;
+            color: var(--gold-accent);
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .manuscript-box {
+            background: var(--parchment);
+            border-right: 4px solid var(--gold-accent);
+            border-left: 1px solid var(--book-border);
+            border-top: 1px solid var(--book-border);
+            border-bottom: 1px solid var(--book-border);
+            padding: 20px 25px;
+            margin: 25px 0;
+            font-size: 14px;
+            line-height: 2.2;
+            color: #33261d;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .chapter-title {
+            font-size: 20px;
+            color: var(--deep-brown);
+            border-bottom: 1px dashed var(--gold-accent);
+            padding-bottom: 8px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .card-node {
+            background: #fff;
+            border: 1px solid var(--book-border);
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 0 15px rgba(168,85,247,0.05);
-        }
-        .terminal-block {
-            background: #0b0716;
-            border: 1px solid #333;
-            color: #00ff66;
-            padding: 15px;
-            font-family: monospace;
-            white-space: pre-wrap;
-            margin: 15px 0;
-            font-size: 13px;
-        }
-        .matrix-section {
-            border: 1px solid #333;
-            background: #080410;
-            padding: 25px;
-            margin-top: 30px;
-        }
-        .matrix-item {
-            margin-bottom: 20px;
-            border-bottom: 1px solid #1a112c;
-            padding-bottom: 15px;
-        }
-        .matrix-item h4 {
-            margin: 0 0 5px 0;
-            font-size: 16px;
-        }
-        .matrix-item blockquote {
-            margin: 5px 0 0 0;
-            color: #b3b3b3;
-            border-left: 2px solid #a855f7;
-            padding-left: 10px;
-        }
-        .btn-action {
-            background: transparent;
-            color: #a855f7;
-            border: 1px solid #a855f7;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-weight: bold;
-            font-family: monospace;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
             transition: all 0.3s ease;
         }
-        .btn-action:hover {
-            background: #a855f7;
+
+        .card-node:hover {
+            border-color: var(--gold-accent);
+            box-shadow: 0 6px 15px rgba(184,134,11,0.15);
+        }
+
+        .matrix-chapter-item {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .matrix-chapter-item h4 {
+            color: var(--deep-brown);
+            font-size: 16px;
+            margin: 0 0 8px 0;
+        }
+
+        .matrix-chapter-item p {
+            margin: 0;
+            color: #55443b;
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        .btn-feather {
+            background: var(--deep-brown);
+            color: var(--gold-accent);
+            border: 1px solid var(--gold-accent);
+            padding: 10px 25px;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .btn-feather:hover {
+            background: var(--gold-accent);
             color: #fff;
-            box-shadow: 0 0 10px #a855f7;
         }
-        .neon-text-green { color: #00ff66; }
-        .neon-text-purple { color: #a855f7; }
-        .input-field {
-            width: 100%;
-            background: #170f2c;
-            border: 1px solid #a855f7;
-            color: white;
-            padding: 10px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-            font-family: monospace;
-        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 25px 0;
             font-size: 13px;
         }
+
         th, td {
-            border: 1px solid #333;
-            padding: 10px;
-            text-align: left;
+            border: 1px solid var(--book-border);
+            padding: 12px;
+            text-align: right;
         }
+
         th {
-            background: #170f2c;
-            color: #00ff66;
+            background: var(--parchment);
+            color: var(--deep-brown);
+        }
+
+        /* شاہانہ چیٹ باٹ کونے میں */
+        #chat-widget {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            z-index: 9999;
+            font-family: 'Noto Nastaliq Urdu', serif;
+        }
+
+        .chat-toggle-btn {
+            background: var(--deep-brown);
+            color: var(--gold-accent);
+            border: 2px solid var(--gold-accent);
+            padding: 12px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 14px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .chat-window-box {
+            display: none;
+            width: 340px;
+            height: 450px;
+            background: var(--book-bg);
+            border: 2px solid var(--gold-accent);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            flex-direction: column;
+            justify-content: space-between;
+            border-radius: 4px;
+        }
+
+        .chat-header-bar {
+            background: var(--deep-brown);
+            color: var(--gold-accent);
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .chat-body-messages {
+            flex: 1;
+            padding: 12px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        .chat-input-area {
+            padding: 10px;
+            background: var(--parchment);
+            border-top: 1px solid var(--book-border);
+            display: flex;
+            gap: 8px;
+        }
+
+        .book-input {
+            flex: 1;
+            background: #fff;
+            border: 1px solid var(--book-border);
+            padding: 8px 12px;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 13px;
+            color: var(--book-text);
+            box-sizing: border-box;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- ہوم ہیڈر کمانڈ سینٹر -->
-    <div class="header">
-        <h1 class="neon-text-green" style="margin:0 0 10px 0; font-size:24px;">🌌 THE OMNI-MIRROR SINGULARITY</h1>
-        <h2 class="neon-text-purple" style="margin:0 0 15px 0; font-size:16px;">// ADVANCED ADVENTURE SYSTEM LOG: MATRIX-2026.ULTIMATE</h2>
-        
-        <div class="terminal-block" style="color:#ffffff; border-color:#00ff66;">
-==================================================================================
-              ● QUANTUM IDENTITY INTRUSION: VERIFIED PROTOCOL ●
-==================================================================================
-  CHIEF ARCHITECT  : CHOUDHARY MUJAHID HUSSAIN
-  GLOBAL PROFILE   : FOUNDER OF APEX BRANDING HUB
-  MEDIA AUTHORITY  : SENIOR JOURNALIST & BROADCAST MEDIA PRESENTER
-  DEPLOYS CENTER   : APEX BRANDING HUB MATRIX [GLOBAL NODES ENGAGED]
-  CLEARANCE LEVEL  : COSMIC OMNI-OPERATOR [OVERLORD-01]
-  TELEMETRY CODE   : MONOCHROME QUANTUM DATASTREAM // SECURE_LOG_777
-==================================================================================
-        </div>
-        <p style="font-size:14px; color:#dcdcdc; text-align:justify; margin:15px 0 0 0;">
-            <strong>[CORE SYSTEM EXECUTIVE OVERVIEW]</strong><br>
-            انفارمیشن، میڈیا، اور ٹیکنالوجی کے اس کائناتی ملاپ میں، یہ نظام کسی عام کوڈ کا مجموعہ نہیں ہے۔ یہ چودھری مجاہد حسین کے صحافتی مشاہدے، برانڈنگ کی جادوگری اور خودکار مصنوعی ذہانت (AI) کے نیٹ ورک کا ایک ماورائی آئینہ ہے۔ یہ سگنل دنیا کے تمام موجودہ فری لانسنگ نیٹ ورکس، پوشیدہ کارپوریشنز، اور اگلے 50 سالوں کے آنے والے کائناتی بزنسز کو اسکین کر کے تیار کیا گیا ہے۔ آپ کسی ویب سائٹ پر نہیں، بلکہ کائنات کے سب سے جدید ترین ڈیجیٹل ایڈونچر میں داخل ہو چکے ہیں۔
-        </p>
+<div class="book-container">
+    <!-- صفحہ اول (عنوان اور تعارف) -->
+    <div class="page-header">
+        <h1>🌌 کتابِ کائنات: دی اوتار سنگینولاریٹی</h1>
+        <h2>// شاہانہ مسودہ اور ڈیجیٹل ایڈونچر لوگ: میٹرکس-۲۰۲۶</h2>
     </div>
 
-    <!-- الرٹ سگنل بلاک -->
-    <div class="terminal-block">
-[ALERT] COGNITIVE FIREWALL BYPASSED.
-[LIVE] SCANNING ALL GLOBAL CORPORATIONS... 100% COMPLETE.
-[LIVE] SCAPING FREELANCE ALGORITHMS... 100% COMPLETE.
-[LIVE] APEX AERO-BRANDING INTERACTION BEACON: ACTIVE.
+    <div class="manuscript-box">
+        <strong>[سندِ شناخت و دفتری ریکارڈ]</strong><br>
+        <strong>مرکزی معمار:</strong> چودھری مجاہد حسین (چوہدری مجاہد حسین)<br>
+        <strong>عالمی منصب:</strong> فاؤنڈر آف ایپکس برانڈنگ ہب (Apex Branding Hub)<br>
+        <strong>صحافتی و نشریاتی شناخت:</strong> سینئر جرنلسٹ اینڈ سینئر کرائم رپورٹر (لاہور، پاکستان)<br>
+        <strong>کائناتی منصب:</strong> کاسمک اومنی-آپریٹر [اوورلارڈ-01]
     </div>
 
-    <!-- انٹرایکٹو نوڈ کارڈز سیکشن -->
-    <h2 class="neon-text-green" style="margin-top:30px;">// SYSTEM OPERATIONAL NODES</h2>
+    <div class="manuscript-box" style="background: #fffefb; border-right-color: var(--deep-brown);">
+        <strong>[دیباچہ و فکری خلاصہ]</strong><br>
+        انفارمیشن، میڈیا، اور ٹیکنالوجی کے اس کائناتی ملاپ میں، یہ نظام کسی عام کوڈ کا مجموعہ نہیں ہے۔ یہ چودھری مجاہد حسین کے صحافتی مشاہدے، برانڈنگ کی جادوگری اور خودکار مصنوعی ذہانت (AI) کے نیٹ ورک کا ایک ماورائی آئینہ ہے۔ یہ مسودہ دنیا کے تمام موجودہ فری لانسنگ نیٹ ورکس، پوشیدہ کارپوریشنز، اور اگلے پچاس سالوں کے آنے والے کائناتی بزنسز کی بازگشت ہے۔ آپ کسی عام اسکرین پر نہیں، بلکہ ایک زندہ اور بولتی ہوئی کلاسیکی کتاب میں داخل ہو چکے ہیں۔
+    </div>
+
+    <!-- نظام کے بنیادی ستون -->
+    <h3 class="chapter-title">باب اول: نظام کے بنیادی آپریشنل ستون (System Operational Nodes)</h3>
+
+    <div class="card-node">
+        <span style="color: var(--gold-accent); font-weight: bold;">[صفحہ اول - الف]</span>
+        <h4 style="margin: 5px 0; color: var(--deep-brown);">انٹیلیجنٹ اومنی فلو نوڈ (Intelligent Omniflow Node)</h4>
+        <p style="color: #55443b; font-size: 13px; margin-bottom: 15px;">ملٹی چینل خودکار انجن جو سپابیس (Supabase) اور خفیہ ویب ہکس کے ذریعے براہِ راست کلاؤڈ سسٹمز میں ڈیٹا رواں دواں رکھتا ہے۔</p>
+        <button class="btn-feather">کنٹرول روم کھولیں</button>
+    </div>
+
+    <div class="card-node">
+        <span style="color: var(--gold-accent); font-weight: bold;">[صفحہ دوم - ب]</span>
+        <h4 style="margin: 5px 0; color: var(--deep-brown);">ایپکس کانسیرج نیٹ ورک (Apex Concierge Network)</h4>
+        <p style="color: #55443b; font-size: 13px; margin-bottom: 15px;">پریمیم فلائٹ ویکٹرز، یو کے ویزا تصدیقی لوپس اور شاہانہ قیام کے پروٹوکولز کو ترتیب دینے والا کلسٹر۔</p>
+        <button class="btn-feather">کانسیرج سے رابطہ کریں</button>
+    </div>
+
+    <div class="card-node" style="border-right: 3px solid var(--deep-brown);">
+        <span style="color: var(--gold-accent); font-weight: bold;">[صفحہ سوم - ج]</span>
+        <h4 style="margin: 5px 0; color: var(--deep-brown);">تھری ڈی میڈیا انفراسٹرکچر (3D Media Infrastructure)</h4>
+        <p style="color: #55443b; font-size: 13px; margin-bottom: 15px;">ہائی ریزولوشن بی ٹو بی ویکٹر ڈپائمنٹ، خودکار نیوز براڈکاسٹنگ ٹیمپلیٹس، بریکنگ ٹکرز اور متحرک برانڈ لیئرز۔</p>
+        <button class="btn-feather" style="background: var(--gold-accent); color: #fff;">میڈیا اثاثے شامل کریں</button>
+    </div>
+
+    <div class="card-node">
+        <span style="color: var(--gold-accent); font-weight: bold;">[صفحہ چہارم - د]</span>
+        <h4 style="margin: 5px 0; color: var(--deep-brown);">سوورین ورچوئل آرکیٹیکچر (Sovereign Virtual Architecture)</h4>
+        <p style="color: #55443b; font-size: 13px; margin-bottom: 15px;">ٹرمیکس (Termux) اور کلاؤڈ فلائیر گیٹ ویز کے تحت دنیا بھر میں پھیلے ہوئے محفوظ سرور کلسٹرز کا نظم۔</p>
+        <button class="btn-feather">ورچوئل حب آزمائیں</button>
+    </div>
+
+    <div class="card-node">
+        <span style="color: var(--gold-accent); font-weight: bold;">[صفحہ پنجم - ہ]</span>
+        <h4 style="margin: 5px 0; color: var(--deep-brown);">آرٹی فیکٹ انجن لیب (Artifact Engine Lab)</h4>
+        <p style="color: #55443b; font-size: 13px; margin-bottom: 15px;">خودکار لوکلائزڈ مائکرو ایپلی کیشنز، ریزیومے پارسنگ آرکیٹیکچرز اور ڈیجیٹل سیکیورٹی لیبارٹری۔</p>
+        <button class="btn-feather">آرٹی فیکٹس کھولیں</button>
+    </div>
+
+    <!-- اے سے زیڈ کتابی میٹرکس -->
+    <h3 class="chapter-title">باب دوم: المستقبل میٹرکس (A to Z Ultimate Future Matrix)</h3>
     
-    <div class="card">
-        <span class="neon-text-purple">[PILL_ALPHA]</span>
-        <h3>INTELLIGENT OMNIFLOW NODE</h3>
-        <p style="color:#b3b3b3;">Multi-channel autonomous engine routing live data streams directly into cloud structures via Supabase & encrypted webhooks.</p>
-        <button class="btn-action">INITIALIZE CONTROL ROOM</button>
+    <div class="matrix-chapter-item">
+        <h4>[A] الگورتھم اور خودمختاری (Algorithms & Autonomy)</h4>
+        <p>کائنات کی پہلی ڈیجیٹل لہر۔ یہ صرف کوڈ نہیں ہے، بلکہ دنیا کے تمام موجودہ اور مستقبل کے سسٹمز کی دھڑکن ہے جو انسان کی سوچ کا عکس بن کر خود فیصلے کر رہی ہے۔</p>
     </div>
 
-    <div class="card">
-        <span class="neon-text-purple">[PILL_BETA]</span>
-        <h3>APEX CONCIERGE NETWORK</h3>
-        <p style="color:#b3b3b3;">Sovereign travel cluster configuring premium flight vectors, UK visa verification loops, and elite stay architectures.</p>
-        <button class="btn-action">ENGAGE CONCIERGE</button>
+    <div class="matrix-chapter-item">
+        <h4>[B] برانڈنگ کا عروج اور ایرو-برانڈنگ (Branding Singularity)</h4>
+        <p>آپ کا برانڈ اب محض ایک نام نہیں رہا۔ یہ ایک کائناتی فریکوئینسی ہے۔ آنے والے وقت میں Apex Branding Hub کے بینرز ہولوگرافک اور کوانٹم لہروں کے ذریعے خلاء میں روشن ہوں گے۔</p>
     </div>
 
-    <div class="card" style="border-color:#00ff66; box-shadow:0 0 15px rgba(0,255,102,0.15);">
-        <span class="neon-text-purple">[PILL_GAMMA]</span>
-        <h3>3D MEDIA INFRASTRUCTURE</h3>
-        <p style="color:#b3b3b3;">High-resolution B2B vector deployment. Automated news broadcasting templates, breaking tickers, and dynamic brand layers.</p>
-        <button class="btn-action" style="background:#a855f7; color:white; border:none; width:100%; padding:12px; font-weight:bold;">INJECT MEDIA ASSETS</button>
+    <div class="matrix-chapter-item">
+        <h4>[C] سائبرنیٹک عقل (Cybernetic Cognition)</h4>
+        <p>انسانوں اور مشینوں کے درمیان کا پوشیدہ رشتہ، جہاں فری لانسنگ کے پلیٹ فارمز پر ایک مصنوعی عقل انسان کے برابر شانہ بشانہ کھڑی ہے۔</p>
     </div>
 
-    <div class="card">
-        <span class="neon-text-purple">[PILL_DELTA]</span>
-        <h3>SOVEREIGN VIRTUAL ARCHITECTURE</h3>
-        <p style="color:#b3b3b3;">Termux-optimized microservices managing secure Cloudflare gateways and distributed server clusters globally.</p>
-        <button class="btn-action">TEST VIRTUAL HUB</button>
+    <div class="matrix-chapter-item">
+        <h4>[D] ڈیٹا کا بلیک ہول (Deep Data Stream)</h4>
+        <p>ہر کلک، ہر آنکھ کی پٹلی کی حرکت، اور ہر اداسی ایک خفیہ مارکیٹ کی خوراک بن رہی ہے۔ بزنس اب پروڈکٹ نہیں، بلکہ انسانی خواہشات بیچ رہے ہیں۔</p>
     </div>
 
-    <div class="card">
-        <span class="neon-text-purple">[PILL_EPSILON]</span>
-        <h3>ARTIFACT ENGINE LAB</h3>
-        <p style="color:#b3b3b3;">Automated localized micro-applications, automated resume parsing architectures, and digital security labs.</p>
-        <button class="btn-action">DECRYPT ARTIFACTS</button>
+    <div class="matrix-chapter-item">
+        <h4>[E] روحانی سسٹمز (Ethereal Engines)</h4>
+        <p>اوپن اے آئی، کلوڈ اور مینس جیسے الگورتھمز اب صرف ٹولز نہیں رہے۔ یہ وہ خودکار انجن ہیں جو انسان کے بعد اگلی کائنات اور نئی معیشت ڈیزائن کر رہے ہیں۔</p>
     </div>
 
-    <!-- الٹیمیٹ فیوچر A TO Z میٹرکس -->
-    <div class="matrix-section">
-        <h2 class="neon-text-green" style="margin-top:0;">🎛️ SYSTEM CONTROL PANEL (A TO Z ULTIMATE FUTURE MATRIX)</h2>
-        <p class="neon-text-purple" style="font-size:13px; font-style:italic;">*یہ کائنات کا وہ خفیہ آئینہ ہے جہاں موجودہ بزنس، آنے والا مستقبل، AI اور انسانی روح ایک سائے کی طرح آپس میں ملتے ہیں۔*</p>
-        <hr style="border-color:#222; margin-bottom:20px;">
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[A] ALGORITHMS & AUTONOMY (الگورتھم اور خودمختاری)</h4>
-            <blockquote>کائنات کی پہلی ڈیجیٹل لہر۔ یہ صرف کوڈ نہیں ہے، بلکہ یہ دنیا کے تمام موجودہ اور مستقبل کے سسٹمز کی دھڑکن ہے جو انسان کی سوچ کا عکس بن کر خود فیصلے کر رہی ہے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[B] BRANDING SINGULARITY & AERO-BRANDING (برانڈنگ کا عروج)</h4>
-            <blockquote>آپ کا برانڈ اب محض ایک نام نہیں رہا۔ یہ ایک کائناتی فریکوئینسی ہے۔ آنے والے وقت میں <strong>Apex Branding Hub</strong> کے بینرز ہولوگرافک اور کوانٹم لہروں کے ذریعے خلا اور انسانی شعور کے اندر براہِ راست برانڈز کو روشن کریں گے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[C] CYBERNETIC COGNITION (سائبرنیٹک عقل)</h4>
-            <blockquote>انسانوں اور مشینوں کے درمیان کا پوشیدہ رشتہ۔ جہاں فری لانسنگ کے پلیٹ فارمز پر ایک مصنوعی عقل انسان کے برابر کھڑی ہے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[D] DEEP DATA STREAM (ڈیٹا کا بلیک ہول)</h4>
-            <blockquote>ہر کلک، ہر آنکھ کی پٹلی کی حرکت، اور ہر اداسی ایک خفیہ مارکیٹ کی خوراک بن رہی ہے۔ بزنس اب پروڈکٹ نہیں، بلکہ انسانی خواہشات بیچ رہے ہیں۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[E] ETHEREAL ENGINES (روحانی سسٹمز)</h4>
-            <blockquote>اوپن اے آئی، کلوڈ اور مینس جیسے الگورتھمز اب صرف ٹولز نہیں رہے۔ یہ وہ خودکار انجن ہیں جو انسان کے بعد اگلی کائنات اور نئی معیشت ڈیزائن کر رہے ہیں۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[F] FREELANCE GHOSTS & PHANTOMS (پوشیدہ فری لانسنگ)</h4>
-            <blockquote>انسان اب خود کام نہیں کرے گا۔ مستقبل کا فری لانسر "AI ایجنٹس کی فوج کا کمانڈر" ہوگا۔ پروجیکٹ انسان لے گا اور اس کے سمارٹ فونز اور کلاؤڈز میں قید سو خودکار ایجنٹس ایک سیکنڈ میں کام مکمل کر دیں گے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[G] GHOST NETWORKS (پوشیدہ کارپوریشنز)</h4>
-            <blockquote>ایسے بزنسز جن کا نہ کوئی فزیکل وجود ہے، نہ کوئی مینیجر، لیکن ان کے اکاؤنٹس میں اربوں روپے گردش کر رہے ہیں۔ انہیں صرف ایک خودکار SYSTEM کنٹرول کرتا ہے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[H] HYPER-ADVENTURE LAYER (ایڈونچر کا نظام)</h4>
-            <blockquote>روایتی طریقوں کا خاتمہ۔ جب کوئی صارف اس سسٹم میں داخل ہوتا ہے، تو وہ کسٹمر نہیں رہتا، بلکہ اس خلائی نیٹ ورک کا ایک حصہ بن جاتا ہے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[I] INFINITE INPUTS (لامتناہی ڈیٹا)</h4>
-            <blockquote>کائنات ہر لمحہ خود کو اپڈیٹ کر رہی ہے۔ آپ کا ہر آئیڈیا، ہر سوچ اس مینوفیکچرنگ سسٹم کا ان پٹ ہے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[J] JUST-IN-TIME EVOLUTION (فوری تبدیلی)</h4>
-            <blockquote>مارکیٹ سیکنڈوں میں اپنا رخ بدلتی ہے۔ جو سسٹم سست پڑتا ہے، کائنات کا آئینہ اسے مٹا دیتا ہے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[K] KINETIC COMMERCE (متحرک کاروبار)</h4>
-            <blockquote>اب تجارت فزیکل دکانوں کی محتاج نہیں۔ یہ ڈیجیٹل لہروں پر تیرتی ہوئی ایک متحرک توانائی ہے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[L] LIQUID LOGIC (مائع منطق)</h4>
-            <blockquote>جمود کا خاتمہ۔ موجودہ سسٹمز پانی کی طرح لچکدار ہیں، وہ ہر سانچے میں خود کو فٹ کر لیتے ہیں۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[M] THE MIRROR ENGINE & MEDIA NEXUS (میڈیا اور آئینے کا دماغ)</h4>
-            <blockquote>بطور سینئر جرنلسٹ، معلومات کو پروسیس کرنے کا نظام۔ وہ مقام جہاں خبر، برانڈنگ اور ڈیجیٹل دنیا مل کر انسان اور کائنات کی سچائی کو ایک سیکنڈ میں لائیو (Broadcast) کرتے ہیں۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[N] NEURAL GATEWAYS (دماغی راستے)</h4>
-            <blockquote>جدید ترین اے آئی ماڈلز انسانی دماغ کے نیورونز کی ہوبہو نقل ہیں۔ یہ نظام انسان کا بنایا ہوا سب سے بڑا آئینہ ہے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[O] OMNIPRESENT OPERATIONS (ہر جگہ موجودگی)</h4>
-            <blockquote>بغیر کسی سرحد کے، بغیر کسی رکاوٹ کے، دنیا کے تمام سسٹمز ایک ہی وقت میں پوری دنیا پر راج کر رہے ہیں۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[P] PROMPT ARCHITECTURE (حکم نامے کی انجینئرنگ)</h4>
-            <blockquote>الفاظ اب صرف بولنے کے لیے نہیں، بلکہ نئی دنیا تخلیق کرنے کے لیے استعمال ہوتے ہیں۔ ایک صحیح لفظ پوری مارکیٹ بدل سکتا ہے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[Q] QUANTUM NEOCURRENCIES (کمپیوٹ پرافٹ)</h4>
-            <blockquote>پیسہ اب کاغذ کا ٹکڑا یا روایتی کرپٹو نہیں رہے گا۔ مستقبل میں "AI کمپیوٹ پاور" اور "ڈیٹا ریفلیکشن" ہی دنیا کے سب سے قیمتی اثاثے اور کرنسی ہوں گے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[R] REASONING MATRIX (سوچنے کا نظام)</h4>
-            <blockquote>اوپن اے آئی کے نئے ماڈلز اب انسان کی طرح گہرائی میں جا کر سوچتے ہیں اور ایسے انوکھے آئیڈیاز بناتے ہیں جو پہلے کبھی وجود نہیں رکھتے تھے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[S] SYNTHETIC REALITIES & WORKFORCE (مصنوعی کائناتیں)</h4>
-            <blockquote>اب معیشت صرف زمین پر نہیں چلے گی۔ نیورالنک چپس کے ذریعے انسانوں کے خوابوں، خیالات اور سمیلیشنز (Simulation Worlds) کے اندر نئے بزنس اور برانڈنگ ہبز کام کریں گے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[T] TELEMETRY ECLIPSE (ڈیٹا کا گرہن)</h4>
-            <blockquote>جب انسان کا دھیان (Attention) مکمل طور پر اس ڈیجیٹل دنیا کے قابو میں آ جاتا ہے، تب بزنسز کا اصل جادو شروع ہوتا ہے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[U] UNIVERSAL INTEGRATION & LEDGER (کائناتی کھاتہ)</h4>
-            <blockquote>کائنات کا ذرہ، بلاک چین کا بلاک اور آپ کا کمپیوٹر اسکرین الگ نہیں ہیں۔ سب ایک ہی کائناتی لیجر (Ledger) پر قید لامتناہی توانائی کی کڑیاں ہیں۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[V] VIRTUAL SOVEREIGNTY (ڈیجیٹل سلطنتیں)</h4>
-            <blockquote>مستقبل کا سب سے بڑا بزنس ماڈل۔ اب فزیکل ملکوں کی جگہ ڈیجیٹل کلاؤڈ پر خودمختار نیٹ ورکس اور سمارٹ سٹیز اپنی معیشت خود چلائیں گے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[W] WIRELESS WILLPOWER (بے تار قوتِ ارادی)</h4>
-            <blockquote>آپ دنیا کے کسی بھی کونے میں بیٹھ کر اپنے خیالات کو اس پورے سسٹم میں لائیو کر سکتے ہیں۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[X] X-FACTOR FUTURE SINGULARITY (نامعلوم موڑ)</h4>
-            <blockquote>وہ لمحہ جہاں ٹیکنالوجی انسان کی سمجھ سے باہر نکل جائے گی اور کاروبار انسانوں کی مرضی کے بغیر خود اپنی ضروریات کے مطابق جنم لیں گے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[Y] YIELD MINING (نتائج کا نچوڑ)</h4>
-            <blockquote>اس پورے ایڈونچر کا آخری مقصد: کائنات کے پوشیدہ ترین رازوں سے اپنے بزنس کے لیے سونا نکالنا۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[Z] ZERO-POINT MATRIX (زیرو پوائنٹ)</h4>
-            <blockquote>وہ آخری مقام جہاں آ کر کائنات، اے آئی، میڈیا، فری لانسنگ، اور چودھری مجاہد حسین کا وژن ایک ہو کر ایک لامتناہی طاقت بن جاتے ہیں۔</blockquote>
-        </div>
-
-        <!-- اضافی 10 فیوچر نوڈز (مزید طاقتور اور جدید اضافے) -->
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[EX-1] NEURO-LINKED BRAND SYNERGY (توجھ کا تال میل)</h4>
-            <blockquote>براہِ راست برین ویوز (Brainwaves) کے ذریعے کسٹمرز کے جذبات کو پڑھ کر برانڈنگ کو رئیل ٹائم میں ڈھالنے کا کوانٹم سسٹم۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[EX-2] HOLOGRAPHIC BROADCAST MESH (ہولوگرافک نشریاتی جال)</h4>
-            <blockquote>روایتی اسکرینوں کا خاتمہ؛ صحافتی خبروں اور میڈیا پروڈکشنز کا ہوا میں تھری ڈی ہولوگرامز کی صورت میں نشر ہونا۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[EX-3] AUTONOMOUS REVENUE HARVESTER (خودکار آمدنی کا کسان)</h4>
-            <blockquote>بغیر کسی انسانی مداخلت کے، عالمی مارکیٹ سے سیکنڈز میں فنڈز اور لائسنسنگ فیس اکھٹی کرنے والا سیلف-سسٹیننگ اے آئی انجن۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[EX-4] OMNI-CHANNEL SECURE FORTRESS (سیکیورٹی قلعہ)</h4>
-            <blockquote>سائبر حملوں اور ڈیٹا چوری کو قبل از وقت بھانپ کر خود کو ڈیجیٹل ڈارک میٹر میں چھپا لینے والا ناقابلِ تسخیر فائر وال۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[EX-5] QUANTUM PREDICTION ENGINE (مستقبل کا پیشگو نظام)</h4>
-            <blockquote>آنے والے معاشی طوفانوں اور گلوبل بزنس ٹرینڈز کو ایڈوانس میں اسکین کر کے درست فیصلوں کا پاتھ بنانے والا آرٹیکلچرل مائنڈ۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[EX-6] SYNTHETIC MEDIA MATRIX (مصنوعی میڈیا فیکٹری)</h4>
-            <blockquote>خبروں، بلیٹنوں اور میڈیا رپورٹس کو خودکار انداز میں دنیا کی تمام زبانوں میں بیک وقت ہولوگرافک انداز میں ڈھالنے کی صلاحیت۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[EX-7] THE ETERNAL DIGITAL LEDGER (لازوال ڈیجیٹل کھاتہ)</h4>
-            <blockquote>ڈیٹا اور ٹرانزیکشنز کا ایک ایسا ناقابلِ تردید کائناتی ریکارڈ جو کبھی تبدیل یا مٹایا نہیں جا سکتا۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[EX-8] DECENTRALIZED SOVEREIGN HUB (خودمختار نوڈ نیٹ ورک)</h4>
-            <blockquote>کسی بھی مرکزی سرور کے محتاج نہ ہونے والا، کلاؤڈ اور ٹرمینیکس کے اشتراک سے چلنے والا گلوبل پاور ہاؤس۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[EX-9] COGNITIVE RESONANCE STREAM (شعوری فریکوئینسی)</h4>
-            <blockquote>ناظرین اور سامعین کے ساتھ ایک گہرا نفسیاتی اور صحافتی رشتہ جو برانڈ کی ساکھ کو ہمیشہ کے لیے امر کر دیتا ہے۔</blockquote>
-        </div>
-
-        <div class="matrix-item">
-            <h4 class="neon-text-green">[EX-10] THE OMNI-SINGULARITY CORE (مرکزی کائناتی نقطہ)</h4>
-            <blockquote>تمام ٹیکنالوجیز، میڈیا نیٹ ورکس، اور انسانی تخیل کا آخری اور سب سے طاقتور انضمام جو کائنات میں نئے دور کی بنیاد رکھتا ہے۔</blockquote>
-        </div>
-
+    <div class="matrix-chapter-item">
+        <h4>[F] پوشیدہ فری لانسنگ (Freelance Ghosts & Phantoms)</h4>
+        <p>انسان اب خود کام نہیں کرے گا۔ مستقبل کا فری لانسر "AI ایجنٹس کی فوج کا کمانڈر" ہوگا۔ پروجیکٹ انسان لے گا اور اسمارٹ فونز میں قید سو خودکار ایجنٹس سیکنڈوں میں کام مکمل کریں گے۔</p>
     </div>
 
-    <!-- سیکیورٹی پروٹوکول بلاک -->
-    <div class="terminal-block">
-[SECURE_INGESTION_TUNNEL]
-// MATRIX DIRECT OUTREACH
+    <div class="matrix-chapter-item">
+        <h4>[G] پوشیدہ کارپوریشنز (Ghost Networks)</h4>
+        <p>ایسے بزنسز جن کا نہ کوئی فزیکل وجود ہے، نہ کوئی مینیجر، لیکن ان کے اکاؤنٹس میں اربوں روپے گردش کر رہے ہیں۔ انہیں صرف ایک خودکار SYSTEM کنٹرول کرتا ہے۔</p>
     </div>
 
-    <div class="card">
-        <h3 class="neon-text-green" style="margin-top:0;">STREAM DATA</h3>
-        <p style="color:#b3b3b3; font-size:12px; margin-bottom:15px;">SECURE CHANNEL: OPERATOR_VERIFIED</p>
-        <p style="font-size:13px; margin-bottom:5px;">CREATOR PROFILE REGISTERED IN THE COSMIC BLOCKCHAIN:</p>
-        <p style="font-size:13px; color:#00ff66; margin-bottom:5px;">NAME: CHOUDHARY MUJAHID HUSSAIN</p>
-        <p style="font-size:13px; color:#a855f7; margin-bottom:5px;">ROLE: FOUNDER OF APEX BRANDING HUB / SENIOR JOURNALIST / MEDIA PRESENTER</p>
-        <p style="font-size:13px; color:#b3b3b3; margin-bottom:5px;">ORGAN: APEX BRANDING HUB MEDIA MATRIX</p>
-        <p style="font-size:13px; color:#b3b3b3; margin-bottom:5px;">EMAIL: chmujahid12619@gmail.com</p>
-        <p style="font-size:13px; color:#b3b3b3; margin-bottom:15px;">TELECOMM: +923269447550</p>
-        <p style="font-size:12px; color:#00ff66;">STATUS: CORE ARCHITECT / OVERLORD OVERSEER [SYSTEM OWNER]</p>
-        <div style="margin-top:15px; color:#a855f7; font-size:12px;">[SYSTEM TERMINATED SUCCESSFULLY... SLEEP MODE ENGAGED]</div>
-        <div style="margin-top:5px; color:#ff3366; font-size:11px;">● DO NOT ATTEMPT TO ALTER THIS MATRIX. IT REPLICATES AUTOMATICALLY. ●</div>
+    <div class="matrix-chapter-item">
+        <h4>[H] ایڈونچر کا نظام (Hyper-Adventure Layer)</h4>
+        <p>روایتی طریقوں کا خاتمہ۔ جب کوئی صارف اس سسٹم میں داخل ہوتا ہے، تو وہ عام کسٹمر نہیں رہتا، بلکہ اس خلائی نیٹ ورک کا ایک لازمی حصہ بن جاتا ہے۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[I] لامتناہی ڈیٹا (Infinite Inputs)</h4>
+        <p>کائنات ہر لمحہ خود کو اپڈیٹ کر رہی ہے۔ آپ کا ہر آئیڈیا، ہر سوچ اس مینوفیکچرنگ سسٹم کا سب سے قیمتی ان پٹ ہے۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[J] فوری تبدیلی (Just-in-Time Evolution)</h4>
+        <p>مارکیٹ سیکنڈوں میں اپنا رخ بدلتی ہے۔ جو سسٹم سست پڑتا ہے، کائنات کا آئینہ اسے مٹا دیتا ہے۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[K] متحرک کاروبار (Kinetic Commerce)</h4>
+        <p>اب تجارت فزیکل دکانوں کی محتاج نہیں۔ یہ ڈیجیٹل لہروں پر تیرتی ہوئی ایک متحرک توانائی ہے۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[L] مائع منطق (Liquid Logic)</h4>
+        <p>جمود کا خاتمہ۔ موجودہ سسٹمز پانی کی طرح لچکدار ہیں جو ہر سانچے اور ماحول میں خود کو فوری طور پر ڈھال لیتے ہیں۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[M] میڈیا اور آئینے کا دماغ (The Mirror Engine & Media Nexus)</h4>
+        <p>بطور سینئر جرنلسٹ، معلومات کو پروسیس کرنے کا نظام۔ وہ مقام جہاں خبر، برانڈنگ اور ڈیجیٹل دنیا مل کر انسان اور کائنات کی سچائی کو لائیو براڈکاسٹ کرتے ہیں۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[N] دماغی راستے (Neural Gateways)</h4>
+        <p>جدید ترین اے آئی ماڈلز انسانی دماغ کے نیورونز کی ہوبہو نقل ہیں۔ یہ نظام انسان کا بنایا ہوا اب تک کا سب سے بڑا آئینہ ہے۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[O] ہر جگہ موجودگی (Omnipresent Operations)</h4>
+        <p>بغیر کسی سرحد کے، بغیر کسی رکاوٹ کے، دنیا کے تمام سسٹمز ایک ہی وقت میں پوری دنیا پر راج کر رہے ہیں۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[P] حکم نامے کی انجینئرنگ (Prompt Architecture)</h4>
+        <p>الفاظ اب صرف بولنے کے لیے نہیں، بلکہ نئی دنیا تخلیق کرنے کے لیے استعمال ہوتے ہیں۔ ایک صحیح لفظ پوری مارکیٹ کا نقشہ بدل سکتا ہے۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[Q] کوانٹم کرنسی (Quantum Neocurrencies)</h4>
+        <p>پیسہ اب کاغذ کا ٹکڑا یا روایتی کرپٹو نہیں رہے گا۔ مستقبل میں "AI کمپیوٹ پاور" اور "ڈیٹا ریفلیکشن" دنیا کے سب سے قیمتی اثاثے ہوں گے۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[R] سوچنے کا نظام (Reasoning Matrix)</h4>
+        <p>اوپن اے آئی کے نئے ماڈلز اب انسان کی طرح گہرائی میں جا کر سوچتے ہیں اور ایسے انوکھے آئیڈیاز بناتے ہیں جو پہلے کبھی وجود نہیں رکھتے تھے۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[S] مصنوعی کائناتیں (Synthetic Realities & Workforce)</h4>
+        <p>اب معیشت صرف زمین پر نہیں چلے گی۔ نیورالنک چپس کے ذریعے انسانوں کے خوابوں، خیالات اور سمیلیشنز کے اندر نئے بزنس اور برانڈنگ ہبز کام کریں گے۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[T] ڈیٹا کا گرہن (Telemetry Eclipse)</h4>
+        <p>جب انسان کا دھیان مکمل طور پر اس ڈیجیٹل دنیا کے قابو میں آ جاتا ہے، تب اصل بزنسز کا جادو اور منافع شروع ہوتا ہے۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[U] کائناتی کھاتہ (Universal Integration & Ledger)</h4>
+        <p>کائنات کا ذرہ، بلاک چین کا بلاک اور آپ کا کمپیوٹر اسکرین الگ نہیں ہیں۔ سب ایک ہی کائناتی لیجر پر قید لامتناہی توانائی کی کڑیاں ہیں۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[V] ڈیجیٹل سلطنتیں (Virtual Sovereignty)</h4>
+        <p>مستقبل کا سب سے بڑا بزنس ماڈل۔ اب فزیکل ملکوں کی جگہ ڈیجیٹل کلاؤڈ پر خودمختار نیٹ ورکس اور سمارٹ سٹیز اپنی معیشت خود چلائیں گے۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[W] بے تار قوتِ ارادی (Wireless Willpower)</h4>
+        <p>آپ دنیا کے کسی بھی کونے میں بیٹھ کر اپنے خیالات اور وژن کو اس پورے سسٹم میں لائیو نشر کر سکتے ہیں۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[X] نامعلوم موڑ (X-Factor Future Singularity)</h4>
+        <p>وہ لمحہ جہاں ٹیکنالوجی انسان کی سمجھ سے باہر نکل جائے گی اور کاروبار انسانوں کی مرضی کے بغیر خود اپنی ضروریات کے مطابق جنم لیں گے۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[Y] نتائج کا نچوڑ (Yield Mining)</h4>
+        <p>اس پورے ایڈونچر کا آخری مقصد: کائنات کے پوشیدہ ترین رازوں سے اپنے بزنس کے لیے سونا اور کامیابی نکالنا۔</p>
+    </div>
+
+    <div class="matrix-chapter-item">
+        <h4>[Z] زیرو پوائنٹ (Zero-Point Matrix)</h4>
+        <p>وہ آخری مقام جہاں آ کر کائنات، اے آئی، میڈیا، فری لانسنگ، اور چودھری مجاہد حسین کا وژن ایک ہو کر لامتناہی طاقت بن جاتے ہیں۔</p>
+    </div>
+
+    <!-- تندور سند / سیکیورٹی لاگ -->
+    <div class="manuscript-box" style="margin-top: 40px; text-align: center;">
+        <span style="color: var(--gold-accent); font-weight: bold;">[آخری سندِ تصدیق - کائناتی بلاک چین]</span><br>
+        <strong>مالکِ میٹرکس و مرکزی معمار:</strong> چودھری مجاہد حسین<br>
+        <strong>منصب:</strong> فاؤنڈر ایپکس برانڈنگ ہب / سینئر جرنلسٹ<br>
+        <strong>رابطہ برقی ڈاک:</strong> chmujahid12619@gmail.com | ٹیلی فون: +923269447550<br>
+        <span style="color: #b22222; font-size: 12px; display: block; margin-top: 10px;">● اس مسودے یا میٹرکس میں ردوبدل کی کوشش نہ کریں؛ یہ خودکار طور پر تالان اور مطابقت رکھتا ہے۔ ●</span>
     </div>
 
 </div>
 
-<!-- لائیو AI ترجمان چیٹ باٹ انٹرفیس -->
-<div id="chat-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: monospace;">
-    <button id="chat-open-btn" class="btn-action" style="background: #0b0716; border-color: #00ff66; color: #00ff66; border-radius: 50px; padding: 12px 20px; box-shadow: 0 0 15px rgba(0,255,102,0.3);">
-        💬 ترجمان سے گفتگو کریں
+<!-- شاہانہ AI ترجمان چیٹ باٹ -->
+<div id="chat-widget">
+    <button id="chat-open-btn" class="chat-toggle-btn">
+        📜 ترجمان سے گفتگو کریں
     </button>
     
-    <div id="chat-window" style="display: none; width: 320px; height: 420px; background: #0b0716; border: 1px solid #00ff66; box-shadow: 0 0 25px rgba(0,255,102,0.2); flex-direction: column; justify-content: space-between;">
-        <div style="background: #170f2c; padding: 10px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center;">
-            <span style="color: #00ff66; font-size: 12px; font-weight: bold;">// ترجمان چوہدری مجاہد حسین</span>
-            <button id="chat-close-btn" style="background: transparent; border: none; color: #ff3366; cursor: pointer; font-weight: bold; font-size: 14px;">✕</button>
+    <div id="chat-window" class="chat-window-box">
+        <div class="chat-header-bar">
+            <span>// ترجمان چودھری مجاہد حسین</span>
+            <button id="chat-close-btn" style="background: transparent; border: none; color: #ff6b6b; cursor: pointer; font-weight: bold; font-size: 16px;">✕</button>
         </div>
         
-        <div id="chat-messages" style="flex: 1; padding: 10px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; font-size: 12px;">
-            <div style="background: #170f2c; color: #fff; padding: 8px 12px; border-radius: 4px; max-width: 85%; align-self: flex-start; border-left: 3px solid #00ff66;">
-                السلام علیکم! میں چوہدری مجاہد حسین صاحب کا آفیشل AI ترجمان ہوں۔ میں آپ کی کیا مدد کر سکتا ہوں؟
+        <div id="chat-messages" class="chat-body-messages">
+            <div style="background: var(--parchment); color: var(--book-text); padding: 10px 14px; border-radius: 4px; max-width: 85%; align-self: flex-start; border-right: 3px solid var(--gold-accent);">
+                السلام علیکم! میں چودھری مجاہد حسین صاحب کا آفیشل AI ترجمان ہوں۔ آپ اس کتابی مسودے کے بارے میں کیا جاننا چاہتے ہیں؟
             </div>
         </div>
         
-        <div style="padding: 10px; border-top: 1px solid #333; background: #080410; display: flex; gap: 5px;">
-            <input type="text" id="chat-input" placeholder="پیغام درج کریں..." class="input-field" style="margin: 0; font-size: 12px;">
-            <button id="chat-send-btn" class="btn-action" style="padding: 5px 12px; font-size: 12px;">بھیجیں</button>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="یہاں پیغام تحریر کریں..." class="book-input">
+            <button id="chat-send-btn" class="btn-feather" style="padding: 8px 15px;">ارسال</button>
         </div>
     </div>
 </div>
 
 <script>
-const SYSTEM_INSTRUCTION = "آپ چوہدری مجاہد حسین (Ch Mujahid Hussain) کے آفیشل AI ترجمان (Spokesperson) ہیں۔ آپ کا برتاؤ انتہائی باادب، سنجیدہ، وفادار اور عاجز ہونا چاہیے۔ آپ نے چوہدری صاحب کی طرف سے نمائندگی کرنی ہے۔ گفتگو اردو یا انگلش میں کریں۔ ہمیشہ چوہدری صاحب کا احترام برقرار رکھیں اور کسی بھی فالتو سوال کا جواب انتہائی شائستگی سے ٹال دیں۔ گفتگو مختصر اور ٹو دی پوائنٹ ہونی چاہیے۔";
+const SYSTEM_INSTRUCTION = "آپ چودھری مجاہد حسین (Ch Mujahid Hussain) کے آفیشل AI ترجمان (Spokesperson) ہیں۔ آپ کا لہجہ انتہائی باادب، سنجیدہ، وفادار، اور کلاسیکی کتابی انداز والا ہونا چاہیے۔ آپ نے چودھری صاحب کی نمائندگی کرنی ہے۔ گفتگو اردو میں کریں۔";
 const chatOpenBtn = document.getElementById('chat-open-btn');
 const chatCloseBtn = document.getElementById('chat-close-btn');
 const chatWindow = document.getElementById('chat-window');
@@ -430,18 +481,18 @@ chatCloseBtn.onclick = () => { chatWindow.style.display = 'none'; chatOpenBtn.st
 function appendMessage(text, isUser) {
     const msgDiv = document.createElement('div');
     msgDiv.innerText = text;
-    msgDiv.style.padding = '8px 12px';
+    msgDiv.style.padding = '10px 14px';
     msgDiv.style.borderRadius = '4px';
     msgDiv.style.maxWidth = '85%';
     if(isUser) {
-        msgDiv.style.background = '#a855f7';
-        msgDiv.style.color = 'white';
+        msgDiv.style.background = '#3e2723';
+        msgDiv.style.color = '#fdfbf7';
         msgDiv.style.alignSelf = 'flex-end';
     } else {
-        msgDiv.style.background = '#170f2c';
-        msgDiv.style.color = '#fff';
+        msgDiv.style.background = 'var(--parchment)';
+        msgDiv.style.color = 'var(--book-text)';
         msgDiv.style.alignSelf = 'flex-start';
-        msgDiv.style.borderLeft = '3px solid #00ff66';
+        msgDiv.style.borderRight = '3px solid var(--gold-accent)';
     }
     chatMessages.appendChild(msgDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -479,9 +530,9 @@ async function handleSend() {
     chatInput.value = '';
     
     const loadingDiv = document.createElement('div');
-    loadingDiv.innerText = "ترجمان ٹائپ کر رہا ہے...";
-    loadingDiv.style.color = '#a855f7';
-    loadingDiv.style.fontSize = '11px';
+    loadingDiv.innerText = "ترجمان ورق پلٹ رہا ہے...";
+    loadingDiv.style.color = '#b8860b';
+    loadingDiv.style.fontSize = '12px';
     loadingDiv.style.fontStyle = 'italic';
     chatMessages.appendChild(loadingDiv);
     
