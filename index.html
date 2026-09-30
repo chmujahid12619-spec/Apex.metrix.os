@@ -1,332 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE ROYAL INK & QUILL ARCHIVE // CH. MUJAHID HUSSAIN</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-deep: #05070b;
-            --royal-gold: #d4af37;
-            --ink-blue: #00d2ff;
-            --parchment-bg: #0b0f19;
-            --text-gold: #f3e5ab;
-        }
-
-        body {
-            background-color: var(--bg-deep);
-            background-image: 
-                radial-gradient(circle at 50% 15%, rgba(212, 175, 55, 0.15) 0%, transparent 65%),
-                linear-gradient(135deg, #05070b 0%, #0f172a 100%);
-            color: var(--text-gold);
-            font-family: 'Cinzel', serif;
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
-
-        .omni-container {
-            width: 100%;
-            max-width: 900px;
-            background: var(--parchment-bg);
-            border: 2px solid var(--royal-gold);
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.3), inset 0 0 30px rgba(212, 175, 55, 0.08);
-            padding: 45px;
-            position: relative;
-            box-sizing: border-box;
-        }
-
-        .master-header {
-            text-align: center;
-            border-bottom: 2px solid var(--royal-gold);
-            padding-bottom: 25px;
-            margin-bottom: 35px;
-        }
-
-        .master-header h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 26px;
-            color: var(--royal-gold);
-            margin: 0 0 10px 0;
-            letter-spacing: 3px;
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-        }
-
-        .master-header h2 {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 13px;
-            color: var(--ink-blue);
-            margin: 0;
-            letter-spacing: 4px;
-        }
-
-        .telemetry-panel {
-            background: rgba(8, 12, 20, 0.95);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            border-left: 5px solid var(--royal-gold);
-            padding: 24px;
-            margin: 25px 0;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 14px;
-            line-height: 1.8;
-            color: #cbd5e1;
-        }
-
-        .telemetry-panel span {
-            color: var(--royal-gold);
-        }
-
-        /* Quill & Inkwell Floating Station Widget */
-        #quill-station-widget {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 9999;
-        }
-
-        .quill-toggle-btn {
-            background: #0f172a;
-            color: var(--royal-gold);
-            border: 2px solid var(--royal-gold);
-            padding: 14px 26px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-family: 'Cinzel', serif;
-            font-size: 13px;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.35);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        .quill-toggle-btn:hover {
-            background: var(--royal-gold);
-            color: var(--bg-deep);
-            box-shadow: 0 0 40px var(--royal-gold);
-        }
-
-        .quill-window {
-            display: none;
-            width: 440px;
-            height: 580px;
-            background: rgba(11, 17, 28, 0.98);
-            border: 2px solid var(--royal-gold);
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
-            flex-direction: column;
-            justify-content: space-between;
-            backdrop-filter: blur(20px);
-        }
-
-        .quill-window-header {
-            background: #05070b;
-            color: var(--royal-gold);
-            padding: 14px 18px;
-            border-bottom: 1px solid var(--royal-gold);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'Cinzel', serif;
-            font-size: 13px;
-            letter-spacing: 1px;
-        }
-
-        .writing-desk {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .ink-scroll-box {
-            background: rgba(15, 23, 42, 0.9);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 16px;
-            border-radius: 4px;
-            position: relative;
-        }
-
-        .ink-scroll-box.user-query {
-            border-left: 3px solid var(--ink-blue);
-            color: var(--ink-blue);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 13px;
-            text-align: left;
-        }
-
-        .ink-scroll-box.ai-response {
-            border-right: 4px solid var(--royal-gold);
-            color: var(--text-gold);
-            font-family: 'Amiri', serif;
-            font-size: 16px;
-            line-height: 1.9;
-            text-align: right;
-            direction: rtl;
-        }
-
-        .quill-nib-animation {
-            font-size: 13px;
-            color: var(--royal-gold);
-            font-style: italic;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-            font-family: 'Amiri', serif;
-        }
-
-        .ink-input-area {
-            padding: 14px;
-            background: #05070b;
-            border-top: 1px solid var(--royal-gold);
-            display: flex;
-            gap: 10px;
-        }
-
-        .ink-input {
-            flex: 1;
-            background: #0f172a;
-            border: 1px solid rgba(212, 175, 55, 0.5);
-            padding: 10px 14px;
-            font-family: 'Cinzel', serif;
-            font-size: 13px;
-            color: var(--text-gold);
-            outline: none;
-        }
-
-        .ink-input:focus {
-            border-color: var(--royal-gold);
-            box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
-        }
-
-        .btn-dip-ink {
-            background: transparent;
-            color: var(--royal-gold);
-            border: 1px solid var(--royal-gold);
-            padding: 8px 18px;
-            font-family: 'Cinzel', serif;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-dip-ink:hover {
-            background: var(--royal-gold);
-            color: var(--bg-deep);
-            box-shadow: 0 0 15px var(--royal-gold);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHAPEX NEXUS // THE OMNI-MIRROR SINGULARITY</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Share+Tech+Mono&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#030007;--cyan:#00f6ff;--red:#ff004d;--purple:#9d00ff;--gold:#ffcc00;--text:#e8e0ff;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;min-height:100vh;}
+.bg-layers{position:fixed;inset:0;z-index:-1;}
+.bg-layers::before{content:'';position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 0%, rgba(157,0,255,0.25) 0%, transparent 60%), radial-gradient(40% 40% at 10% 80%, rgba(255,0,77,0.18) 0%, transparent 50%), radial-gradient(40% 40% at 90% 90%, rgba(0,246,255,0.15) 0%, transparent 50%);}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,246,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(157,0,255,0.03) 1px, transparent 1px);background-size:50px 50px;animation:gridMove 20s linear infinite;}
+@keyframes gridMove{0%{transform:translateY(0)}100%{transform:translateY(50px)}}
+.container{max-width:1100px;margin:0 auto;padding:30px 20px;position:relative;z-index:1;}
+.badge{display:inline-block;border:1px solid var(--cyan);color:var(--cyan);font-family:'Share Tech Mono';font-size:11px;letter-spacing:3px;padding:8px 18px;background:rgba(0,246,255,0.06);box-shadow:0 0 20px rgba(0,246,255,0.2);margin-bottom:22px;}
+.hero{border:2px solid var(--cyan);background:rgba(10,2,18,0.88);backdrop-filter:blur(12px);box-shadow:0 0 60px rgba(0,246,255,0.18), inset 0 0 40px rgba(157,0,255,0.1);padding:60px 50px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:12px;left:12px;right:12px;bottom:12px;border:1px dashed rgba(255,0,77,0.4);pointer-events:none;}
+.glitch{font-family:'Cinzel',serif;font-weight:900;font-size:52px;line-height:1;letter-spacing:2px;color:var(--cyan);text-shadow:0 0 20px rgba(0,246,255,0.7);position:relative;}
+.glitch span{color:white}
+.sub{font-family:'Share Tech Mono';color:var(--red);letter-spacing:5px;font-size:13px;margin:14px 0 28px;text-shadow:0 0 12px rgba(255,0,77,0.6);}
+.desc{font-size:16px;line-height:1.8;color:#b9b0d0;max-width:780px;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:32px 0;}
+.stat{border:1px solid rgba(157,0,255,0.5);background:rgba(15,5,25,0.8);padding:16px 18px;}
+.stat b{display:block;font-family:'Share Tech Mono';font-size:22px;color:var(--gold);text-shadow:0 0 10px rgba(255,204,0,0.5);}
+.stat span{font-size:11px;letter-spacing:2px;color:#8e859e;}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;}
+.btn{font-family:'Share Tech Mono';font-size:13px;padding:14px 28px;cursor:pointer;transition:0.3s;border:1px solid;}
+.btn-cyan{color:var(--cyan);border-color:var(--cyan);background:transparent;box-shadow:0 0 18px rgba(0,246,255,0.25);}
+.btn-cyan:hover{background:var(--cyan);color:#000;box-shadow:0 0 35px rgba(0,246,255,0.8);}
+.btn-red{color:white;background:var(--red);border-color:var(--red);box-shadow:0 0 18px rgba(255,0,77,0.4);}
+.btn-red:hover{transform:translateY(-2px);box-shadow:0 0 35px rgba(255,0,77,0.7);}
+.section-title{font-family:'Cinzel';color:var(--cyan);font-size:22px;margin:70px 0 22px;padding-bottom:12px;border-bottom:1px solid var(--purple);letter-spacing:2px;}
+.nodes{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;}
+.node{border:1px solid rgba(157,0,255,0.4);background:rgba(15,5,25,0.75);padding:24px;position:relative;transition:0.4s;}
+.node:hover{border-color:var(--cyan);transform:translateY(-4px);box-shadow:0 0 30px rgba(0,246,255,0.25);}
+.node h4{font-family:'Cinzel';color:var(--red);margin:8px 0 8px;font-size:16px;}
+.node p{color:#9d92ad;font-size:13px;line-height:1.7;}
+.tag{font-family:'Share Tech Mono';font-size:10px;color:var(--cyan);letter-spacing:2px;}
+.vault{margin-top:40px;border:2px solid var(--gold);background:linear-gradient(135deg, rgba(255,204,0,0.08), rgba(10,2,18,0.9));padding:28px 30px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;}
+.vault b{font-family:'Cinzel';color:var(--gold);font-size:18px;}
+.footer{text-align:center;margin:80px 0 30px;font-family:'Share Tech Mono';font-size:10px;color:#5a5470;letter-spacing:2px;}
+#chat-widget{position:fixed;bottom:24px;right:24px;z-index:9999;}
+.chat-btn{background:rgba(10,2,18,0.95);color:var(--cyan);border:2px solid var(--cyan);padding:13px 24px;border-radius:40px;font-family:'Share Tech Mono';cursor:pointer;box-shadow:0 0 22px rgba(0,246,255,0.45);}
+.chat-box{display:none;width:380px;height:500px;background:rgba(5,1,10,0.97);border:2px solid var(--red);box-shadow:0 0 40px rgba(255,0,77,0.35);flex-direction:column;backdrop-filter:blur(16px);}
+.chat-head{background:rgba(15,5,25,0.9);padding:12px 14px;border-bottom:1px solid var(--red);display:flex;justify-content:space-between;font-family:'Cinzel';color:var(--red);font-size:12px;}
+.msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;font-family:'Share Tech Mono';font-size:12px;}
+.input-row{display:flex;gap:8px;padding:10px;border-top:1px solid var(--purple);background:rgba(10,2,18,0.9);}
+.input-row input{flex:1;background:#000;border:1px solid var(--purple);color:var(--cyan);padding:9px 12px;font-family:'Share Tech Mono';outline:none;}
+@media(max-width:700px){.glitch{font-size:30px}.hero{padding:30px 22px}.stats{grid-template-columns:1fr}.chat-box{width:92vw;height:70vh;position:fixed;bottom:80px;right:4vw}}
+</style>
 </head>
 <body>
-
-<div class="omni-container">
-    <div class="master-header">
-        <h1>THE ROYAL INK & QUILL ARCHIVE</h1>
-        <h2>// CHOUDHARY MUJAHID HUSSAIN // ARTISANAL WISDOM & MATRIX</h2>
+<div class="bg-layers"><div class="grid"></div></div>
+<div class="container">
+  <div class="badge">● PRIVATE ALPHA // OVERLORD-01 VERIFIED</div>
+  <div class="hero">
+    <div class="glitch">THE OMNI-MIRROR <span>SINGULARITY</span></div>
+    <div class="sub">// CHAPEX NEXUS - DECENTRALIZED B2B SOVEREIGN NODE</div>
+    <p class="desc">
+      This is not a website. It is a living mirror. Built over 7 months on a Vivo Y19, this Quantum Codex fuses media, capital and autonomous AI into one Sovereign Network. 
+      <span style="color:var(--cyan)">Zero Platform Tax. 100% Escrow Protection. Elite Only.</span><br><br>
+      Conceived by <b style="color:white">Choudhary Mujahid Hussain</b> - Founder, Apex Branding Hub | Senior Journalist | Media Architect. Clearance: COSMIC OMNI-OPERATOR.
+    </p>
+    <div class="stats">
+      <div class="stat"><b>$18,450+</b><span>VAULT SECURED</span></div>
+      <div class="stat"><b>317+</b><span>AI SYSTEMS ACTIVE</span></div>
+      <div class="stat"><b>120+</b><span>ELITE NODES</span></div>
     </div>
-
-    <div class="telemetry-panel">
-        <span>[ARCHIVE SYSTEM STATUS: SECURE]</span><br>
-        <strong>DIRECTOR & FOUNDER:</strong> Choudhary Mujahid Hussain (Senior Journalist & Crime Reporter, Lahore)<br>
-        <strong>SYSTEM CORE:</strong> Apex Branding Hub & Green Hope Foundation Operations
+    <div class="cta-row">
+      <button class="btn btn-cyan" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">JOIN PRIVATE WAITLIST →</button>
+      <button class="btn btn-red">WATCH NEXUS PROTOCOL</button>
     </div>
-
-    <div class="telemetry-panel" style="text-align: center; border-left: none; border-top: 5px solid var(--royal-gold);">
-        <span>[THE QUILL STATION IS ACTIVE]</span><br>
-        Click the floating royal quill icon at the bottom-right corner to open the inkwell station and let the classic quill write your answers in elegant calligraphy.
+  </div>
+  <div class="section-title">MODULE I: SOVEREIGN OPERATIONAL NODES</div>
+  <div class="nodes">
+    <div class="node"><span class="tag">[NODE_ALPHA // OMNIFLOW]</span><h4>INTELLIGENT OMNIFLOW ENGINE</h4><p>Multi-channel autonomous router. Live Supabase telemetry, encrypted webhooks, and cosmic data streams into one sovereign brain.</p></div>
+    <div class="node"><span class="tag">[NODE_BETA // CONCIERGE]</span><h4>APEX CONCIERGE NETWORK</h4><p>For US/UK owners. Premium flight vectors, UK visa loops, elite stay architectures. Your global mobility, tokenized.</p></div>
+    <div class="node" style="border-color:var(--red)"><span class="tag" style="color:var(--red)">[NODE_GAMMA // MEDIA INFRA]</span><h4>3D MEDIA BROADCAST MATRIX</h4><p>Breaking news tickers, holographic brand layers, B2B vector deployment. The future of media is not watched, it is entered.</p></div>
+    <div class="node"><span class="tag">[NODE_DELTA // VAULT]</span><h4>SOVEREIGN ESCROW VAULT</h4><p>0% Tax. 10% Escrow Protection. P2P settlement on Binance rails. Client money never touches platform. Your capital, your sovereignty.</p></div>
+    <div class="node"><span class="tag">[NODE_EPSILON // ARTIFACT LAB]</span><h4>ARTIFACT ENGINE LAB</h4><p>Auto-generates micro-apps, resume parsers, security labs. 317+ blueprints turned into deployable weapons in seconds.</p></div>
+    <div class="node"><span class="tag">[NODE_ZETA // REASONING]</span><h4>REASONING MATRIX 2.0</h4><p>Not a chatbot. A reasoning layer that thinks like a senior architect. One prompt rewrites your entire market position.</p></div>
+  </div>
+  <div id="waitlist" class="vault">
+    <div><b>PRIVATE WAITLIST - INVITE ONLY</b><br><span style="font-family:'Share Tech Mono';font-size:12px;color:#9d92ad">120+ Nodes already secured. Next drop closes in 72 hours.</span></div>
+    <div style="display:flex;gap:10px">
+      <input id="email" placeholder="founder@company.com" style="background:#000;border:1px solid var(--gold);color:var(--gold);padding:12px 16px;font-family:'Share Tech Mono';width:260px;outline:none">
+      <button class="btn btn-red" onclick="joinWaitlist()">SECURE ACCESS</button>
     </div>
+  </div>
+  <div class="footer">
+    CREATOR: CHOUDHARY MUJAHID HUSSAIN | APEX BRANDING HUB | chmujahid12619@gmail.com | +92 326 9447550<br><br>
+    STATUS: CORE ARCHITECT / OVERLORD-01 [SYSTEM OWNER] ● DO NOT ALTER THIS MATRIX. IT REPLICATES AUTOMATICALLY.
+  </div>
 </div>
-
-<!-- Quill & Inkwell Floating Station Widget -->
-<div id="quill-station-widget">
-    <button id="quill-open-btn" class="quill-toggle-btn">
-        ✒️ Royal Quill & Inkwell
-    </button>
-    
-    <div id="quill-window" class="quill-window">
-        <div class="quill-window-header">
-            <span>// THE GOLDEN QUILL & INKWELL</span>
-            <button id="quill-close-btn" style="background: transparent; border: none; color: var(--royal-gold); cursor: pointer; font-size: 16px; font-weight: bold;">✕</button>
-        </div>
-        
-        <div id="writing-desk" class="writing-desk">
-            <div class="ink-scroll-box ai-response">
-                <div class="quill-nib-animation">✒️ The quill is dipping into the inkwell...</div>
-                خوش آمدید! چودھری مجاہد حسین کے اس شاہانہ مرکز میں آپ کا استقبال ہے۔ بتائیے، آج قلم سے کیا رقم کیا جائے؟
-            </div>
-        </div>
-        
-        <div class="ink-input-area">
-            <input type="text" id="ink-input" placeholder="Type your query or command..." class="ink-input">
-            <button id="ink-send-btn" class="btn-dip-ink">Inscribe</button>
-        </div>
-    </div>
+<div id="chat-widget">
+  <button class="chat-btn" id="openBtn">⚡ SPOKESPERSON PROTOCOL</button>
+  <div class="chat-box" id="chatBox">
+    <div class="chat-head"><span>// CH. MUJAHID HUSSAIN - AI SPOKESPERSON</span><button onclick="closeChat()" style="background:none;border:none;color:var(--red);cursor:pointer;font-weight:900">✕</button></div>
+    <div class="msgs" id="msgs"><div style="background:rgba(15,5,25,0.9);border-left:3px solid var(--cyan);padding:10px 12px">Greetings. I am the official AI Spokesperson for Choudhary Mujahid Hussain, Founder of Apex Branding Hub. This Nexus is invite-only. State your intent.</div></div>
+    <div class="input-row"><input id="chatInput" placeholder="Transmit message..."><button class="btn btn-cyan" style="padding:8px 14px" onclick="sendChat()">SEND</button></div>
+  </div>
 </div>
-
 <script>
-const quillOpenBtn = document.getElementById('quill-open-btn');
-const quillCloseBtn = document.getElementById('quill-close-btn');
-const quillWindow = document.getElementById('quill-window');
-const writingDesk = document.getElementById('writing-desk');
-const inkInput = document.getElementById('ink-input');
-const inkSendBtn = document.getElementById('ink-send-btn');
-
-quillOpenBtn.onclick = () => { quillWindow.style.display = 'flex'; quillOpenBtn.style.display = 'none'; };
-quillCloseBtn.onclick = () => { quillWindow.style.display = 'none'; quillOpenBtn.style.display = 'block'; };
-
-function appendInkMessage(text, isUser) {
-    const box = document.createElement('div');
-    box.className = isUser ? 'ink-scroll-box user-query' : 'ink-scroll-box ai-response';
-    box.innerText = text;
-    writingDesk.appendChild(box);
-    writingDesk.scrollTop = writingDesk.scrollHeight;
+const openBtn=document.getElementById('openBtn'), chatBox=document.getElementById('chatBox'), msgs=document.getElementById('msgs'), chatInput=document.getElementById('chatInput');
+openBtn.onclick=()=>{chatBox.style.display='flex';openBtn.style.display='none'};
+function closeChat(){chatBox.style.display='none';openBtn.style.display='block';}
+function appendMsg(t,isUser){
+  const d=document.createElement('div');d.innerText=t;d.style.padding='10px 12px';d.style.maxWidth='85%';
+  if(isUser){d.style.background='rgba(0,246,255,0.12)';d.style.borderRight='3px solid var(--cyan)';d.style.alignSelf='flex-end';d.style.color='var(--cyan)';}
+  else{d.style.background='rgba(15,5,25,0.9)';d.style.borderLeft='3px solid var(--red)';d.style.alignSelf='flex-start';}
+  msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
 }
-
-function getRoyalResponse(query) {
-    const q = query.toLowerCase();
-    if(q.includes('mujahid') || q.includes('مجاہد') || q.includes('owner')) {
-        return "چودھری مجاہد حسین اس ادارہِ عالیہ اور ایپکس برینڈنگ ہب کے بانی اور سپریم ڈائریکٹر ہیں، جو لاہور میں صحافت اور تخلیقی فن کے امتزاج کا استعارہ ہیں۔";
-    } else if(q.includes('pen') || q.includes('قلم') || q.includes('سیاہی') || q.includes('دوات')) {
-        return "یہ سنہری قلم اور سیاہی کی دُوات حکمت، دانش اور ڈیجیٹل تخلیق کے انمٹ نقوش ثبت کرنے کے لیے ہمیشہ مستعد ہے۔";
-    } else if(q.includes('apex') || q.includes('ایپکس')) {
-        return "ایپکس برینڈنگ ہب ڈیجیٹل میڈیا، برانڈنگ اور جدید ترین ڈیجیٹل سلوشنز کا ایک بین الاقوامی معیار ہے۔";
-    } else {
-        return "آپ کا فرمان '" + query + "' دُوات سے سیاہی لے کر سنہری حروف میں اسکرین پر رقم کر دیا گیا ہے۔ تمام نظامِ کار مکمل طور پر فعال ہیں۔";
-    }
+function joinWaitlist(){
+  const e=document.getElementById('email').value;
+  if(!e.includes('@')){alert('Enter valid business email');return;}
+  appendMsg('Waitlist secured: '+e,true);
+  alert('✓ Secured! You are #'+(Math.floor(Math.random()*20)+121)+' in queue. We will email you privately.');
 }
-
-async function handleInkWriting() {
-    const text = inkInput.value.trim();
-    if(!text) return;
-    
-    appendInkMessage(text, true);
-    inkInput.value = "";
-    
-    // Quill Nib animation status
-    const statusBox = document.createElement('div');
-    statusBox.className = 'ink-scroll-box ai-response';
-    statusBox.innerHTML = '<div class="quill-nib-animation">✒️ The quill is dipping into the inkwell to write...</div>';
-    writingDesk.appendChild(statusBox);
-    writingDesk.scrollTop = writingDesk.scrollHeight;
-    
-    setTimeout(() => {
-        writingDesk.removeChild(statusBox);
-        const reply = getRoyalResponse(text);
-        appendInkMessage(reply, false);
-    }, 900);
+async function sendChat(){
+  const t=chatInput.value.trim(); if(!t) return;
+  appendMsg(t,true); chatInput.value='';
+  const loader=document.createElement('div');loader.innerText='Quantum decrypting...';loader.style.color='var(--red)';loader.style.fontSize='11px';loader.style.fontStyle='italic';msgs.appendChild(loader);
+  setTimeout(()=>{msgs.removeChild(loader);appendMsg("The Nexus is currently in Private Alpha. For business inquiry, contact chmujahid12619@gmail.com or join waitlist above. Your message '"+t+"' has been logged to Overlord-01.",false);},800);
 }
-
-inkSendBtn.onclick = handleInkWriting;
-inkInput.onkeypress = (e) => { if(e.key === 'Enter') handleInkWriting(); };
+chatInput.addEventListener('keypress',e=>{if(e.key==='Enter')sendChat();});
 </script>
-
 </body>
 </html>
