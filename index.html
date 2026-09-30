@@ -2,871 +2,437 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>⚡ VOLCANIC OPERATIONAL MATRIX ⚡</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE ROYAL INK & QUILL // CH. MUJAHID HUSSAIN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
-            --volcanic-deep: #0a0e1a;
-            --cyan-neon: #00ffff;
-            --gold-accent: #ffd700;
-            --orange-lava: #ff4500;
-            --red-volcano: #ff0000;
-            --text-primary: #e0f2ff;
-            --text-secondary: #a0d4ff;
-            --panel-dark: rgba(10, 14, 26, 0.95);
-            --panel-border: rgba(0, 255, 255, 0.4);
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+            --bg-deep: #080b12;
+            --royal-gold: #d4af37;
+            --ink-blue: #00d2ff;
+            --panel-bg: rgba(15, 23, 42, 0.9);
+            --text-gold: #f3e5ab;
         }
 
         body {
-            font-family: 'IBM Plex Mono', monospace;
-            color: var(--text-primary);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            background: linear-gradient(135deg, #0a0e1a 0%, #1a1a2e 50%, #16213e 100%);
-            background-attachment: fixed;
+            background-color: var(--bg-deep);
             background-image: 
-                radial-gradient(circle at 20% 50%, rgba(255, 69, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
-                linear-gradient(135deg, #0a0e1a 0%, #1a1a2e 50%, #16213e 100%);
+                radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.12) 0%, transparent 70%),
+                radial-gradient(circle at 80% 85%, rgba(0, 210, 255, 0.08) 0%, transparent 60%),
+                linear-gradient(135deg, #080b12 0%, #111827 100%);
+            color: var(--text-gold);
+            font-family: 'Amiri', serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
+        .omni-container {
             width: 100%;
-            height: 100%;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    rgba(0, 255, 255, 0.03) 0px,
-                    rgba(0, 255, 255, 0.03) 1px,
-                    transparent 1px,
-                    transparent 2px
-                );
-            pointer-events: none;
-            z-index: 1;
-            animation: scanlines 8s linear infinite;
-        }
-
-        @keyframes scanlines {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(10px); }
-        }
-
-        .matrix-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+            max-width: 1000px;
+            background: var(--panel-bg);
+            border: 2px solid var(--royal-gold);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3), inset 0 0 25px rgba(212, 175, 55, 0.1);
+            padding: 45px;
             position: relative;
-            z-index: 2;
+            box-sizing: border-box;
+            backdrop-filter: blur(15px);
         }
 
-        .volcanic-header {
-            background: linear-gradient(90deg, rgba(10, 14, 26, 0.98) 0%, rgba(255, 69, 0, 0.15) 50%, rgba(10, 14, 26, 0.98) 100%);
-            border-bottom: 3px solid var(--cyan-neon);
-            border-left: 8px solid var(--orange-lava);
-            border-right: 8px solid var(--orange-lava);
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(255, 69, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .volcanic-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
-            animation: headerGlow 3s infinite;
-            pointer-events: none;
-        }
-
-        @keyframes headerGlow {
-            0%, 100% { left: -100%; }
-            50% { left: 100%; }
-        }
-
-        .header-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--cyan-neon);
-            text-shadow: 0 0 20px var(--cyan-neon), 0 0 40px rgba(0, 255, 255, 0.5);
-            letter-spacing: 3px;
-            position: relative;
-            z-index: 2;
-            animation: headerPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes headerPulse {
-            0%, 100% { text-shadow: 0 0 20px var(--cyan-neon), 0 0 40px rgba(0, 255, 255, 0.5); }
-            50% { text-shadow: 0 0 30px var(--cyan-neon), 0 0 60px rgba(0, 255, 255, 0.7); }
-        }
-
-        .header-status {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-        }
-
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--cyan-neon);
-            box-shadow: 0 0 10px var(--cyan-neon);
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        .matrix-main {
-            flex: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            padding: 20px;
-            overflow: hidden;
-        }
-
-        @media (max-width: 1024px) {
-            .matrix-main {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .operational-nodes {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-
-        .operational-nodes::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .operational-nodes::-webkit-scrollbar-track {
-            background: rgba(0, 255, 255, 0.1);
-        }
-
-        .operational-nodes::-webkit-scrollbar-thumb {
-            background: var(--cyan-neon);
-            border-radius: 10px;
-            box-shadow: 0 0 10px var(--cyan-neon);
-        }
-
-        .inode {
-            background: var(--panel-dark);
-            border: 2px solid var(--cyan-neon);
-            border-left: 6px solid var(--orange-lava);
-            border-right: 6px solid var(--gold-accent);
-            padding: 18px;
-            border-radius: 4px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2), inset 0 0 10px rgba(0, 255, 255, 0.05);
-        }
-
-        .inode::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
-            animation: nodeGlow 4s infinite;
-            pointer-events: none;
-        }
-
-        @keyframes nodeGlow {
-            0% { left: -100%; }
-            50% { left: 100%; }
-        }
-
-        .inode:hover {
-            border-color: var(--gold-accent);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.4), inset 0 0 15px rgba(255, 215, 0, 0.1);
-            transform: translateY(-3px);
-        }
-
-        .inode-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--gold-accent);
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            text-shadow: 0 0 10px var(--orange-lava);
-            position: relative;
-            z-index: 2;
-        }
-
-        .inode-status {
-            font-size: 11px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            letter-spacing: 0.5px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .inode-status-active {
-            color: var(--cyan-neon);
-            font-weight: 600;
-        }
-
-        .chat-interface {
-            display: flex;
-            flex-direction: column;
-            background: var(--panel-dark);
-            border: 2px solid var(--cyan-neon);
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.08);
-            position: relative;
-        }
-
-        .chat-header {
-            background: linear-gradient(90deg, rgba(10, 14, 26, 0.98) 0%, rgba(0, 255, 255, 0.1) 100%);
-            border-bottom: 2px solid var(--cyan-neon);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 13px;
-            letter-spacing: 2px;
-            color: var(--cyan-neon);
-            text-shadow: 0 0 10px var(--cyan-neon);
-        }
-
-        .chat-bot-name {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .chat-bot-indicator {
-            width: 8px;
-            height: 8px;
-            background: var(--cyan-neon);
-            border-radius: 50%;
-            animation: pulse 1.5s ease-in-out infinite;
-            box-shadow: 0 0 8px var(--cyan-neon);
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.3); opacity: 0.7; }
-        }
-
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            background: rgba(10, 14, 26, 0.7);
-        }
-
-        .chat-messages::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .chat-messages::-webkit-scrollbar-track {
-            background: rgba(0, 255, 255, 0.1);
-        }
-
-        .chat-messages::-webkit-scrollbar-thumb {
-            background: var(--cyan-neon);
-            border-radius: 4px;
-            box-shadow: 0 0 8px var(--cyan-neon);
-        }
-
-        .message {
-            display: flex;
-            gap: 10px;
-            animation: messageSlide 0.4s ease;
-        }
-
-        @keyframes messageSlide {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .message.user {
-            justify-content: flex-end;
-        }
-
-        .message-content {
-            max-width: 75%;
-            padding: 12px 16px;
-            border-radius: 2px;
-            font-size: 13px;
-            line-height: 1.5;
-            word-wrap: break-word;
-        }
-
-        .message.user .message-content {
-            background: rgba(0, 255, 255, 0.15);
-            border: 1px solid var(--cyan-neon);
-            color: var(--cyan-neon);
-            border-left: 4px solid var(--cyan-neon);
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
-        }
-
-        .message.bot .message-content {
-            background: rgba(255, 215, 0, 0.08);
-            border: 1px solid var(--gold-accent);
-            color: var(--text-primary);
-            border-right: 4px solid var(--gold-accent);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.15);
-        }
-
-        .message.system .message-content {
-            background: rgba(255, 69, 0, 0.1);
-            border: 1px solid var(--orange-lava);
-            color: var(--orange-lava);
+        .master-header {
             text-align: center;
-            width: 100%;
+            border-bottom: 2px solid var(--royal-gold);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
         }
 
-        .typing-indicator {
-            display: flex;
-            gap: 6px;
-            padding: 12px 16px;
-            background: rgba(255, 215, 0, 0.08);
-            border: 1px solid var(--gold-accent);
-            border-radius: 2px;
-            width: fit-content;
+        .master-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            color: var(--royal-gold);
+            margin: 0 0 10px 0;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
         }
 
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--gold-accent);
-            border-radius: 50%;
-            animation: typing 1.4s infinite;
-        }
-
-        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes typing {
-            0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-10px); }
-        }
-
-        .chat-input-area {
-            background: rgba(10, 14, 26, 0.98);
-            border-top: 2px solid var(--cyan-neon);
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .controls {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .lang-btn {
-            padding: 6px 12px;
-            background: rgba(0, 255, 255, 0.1);
-            border: 1px solid var(--cyan-neon);
-            color: var(--text-primary);
-            font-size: 10px;
-            cursor: pointer;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            font-family: 'IBM Plex Mono', monospace;
-        }
-
-        .lang-btn.active {
-            background: var(--cyan-neon);
-            color: #000;
-            box-shadow: 0 0 10px var(--cyan-neon);
-        }
-
-        .model-selector {
-            padding: 8px 12px;
-            background: rgba(26, 26, 46, 0.8);
-            border: 1px solid var(--cyan-neon);
-            color: var(--text-primary);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            border-radius: 2px;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .model-selector:focus {
-            border-color: var(--gold-accent);
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-        }
-
-        .input-row {
-            display: flex;
-            gap: 10px;
-        }
-
-        .chat-input {
-            flex: 1;
-            background: rgba(26, 26, 46, 0.8);
-            border: 1px solid var(--cyan-neon);
-            color: var(--text-primary);
-            padding: 12px 15px;
-            font-family: 'IBM Plex Mono', monospace;
+        .master-header h2 {
+            font-family: 'Share Tech Mono', monospace;
             font-size: 13px;
-            border-radius: 2px;
-            outline: none;
-            transition: all 0.3s ease;
-            caret-color: var(--cyan-neon);
-        }
-
-        .chat-input:focus {
-            border-color: var(--gold-accent);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-        }
-
-        .chat-input::placeholder {
-            color: rgba(160, 212, 255, 0.5);
-        }
-
-        .send-btn {
-            background: linear-gradient(135deg, var(--cyan-neon) 0%, var(--gold-accent) 100%);
-            border: none;
-            color: #000;
-            padding: 12px 20px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
-            text-transform: uppercase;
-        }
-
-        .send-btn:hover {
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
-            transform: scale(1.05);
-        }
-
-        .send-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+            color: var(--ink-blue);
+            margin: 0;
+            letter-spacing: 3px;
         }
 
         .telemetry-panel {
-            background: linear-gradient(90deg, rgba(10, 14, 26, 0.95) 0%, rgba(255, 69, 0, 0.08) 100%);
-            border-top: 2px solid var(--orange-lava);
-            border-bottom: 2px solid var(--cyan-neon);
-            padding: 12px 20px;
-            font-size: 11px;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            flex-wrap: wrap;
+            background: rgba(10, 15, 25, 0.95);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-left: 5px solid var(--royal-gold);
+            padding: 22px;
+            margin: 25px 0;
+            font-size: 15px;
+            line-height: 1.9;
+            direction: rtl;
+            text-align: right;
         }
 
-        .telemetry-item {
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--royal-gold);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+            padding-bottom: 10px;
+            margin-top: 45px;
+            margin-bottom: 25px;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .node-card {
+            background: rgba(10, 15, 25, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 22px;
+            transition: all 0.3s ease;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .node-card:hover {
+            border-color: var(--royal-gold);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .node-card h4 {
+            font-family: 'Cinzel', serif;
+            margin: 0 0 10px 0;
+            color: var(--royal-gold);
+            font-size: 16px;
+        }
+
+        .node-card p {
+            margin: 0 0 15px 0;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .btn-cyber {
+            background: transparent;
+            color: var(--royal-gold);
+            border: 1px solid var(--royal-gold);
+            padding: 8px 16px;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-cyber:hover {
+            background: var(--royal-gold);
+            color: #080b12;
+            box-shadow: 0 0 15px var(--royal-gold);
+        }
+
+        .alphabet-matrix-item {
+            background: rgba(10, 15, 25, 0.85);
+            border-right: 4px solid var(--royal-gold);
+            padding: 20px;
+            margin-bottom: 20px;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .alphabet-matrix-item h4 {
+            color: var(--royal-gold);
+            margin: 0 0 8px 0;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+        }
+
+        .alphabet-matrix-item p {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* Quill & Inkwell Floating Station Widget */
+        #quill-station-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+        }
+
+        .quill-toggle-btn {
+            background: #0f172a;
+            color: var(--royal-gold);
+            border: 2px solid var(--royal-gold);
+            padding: 14px 26px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.35);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .quill-toggle-btn:hover {
+            background: var(--royal-gold);
+            color: #080b12;
+            box-shadow: 0 0 40px var(--royal-gold);
+        }
+
+        .quill-window {
+            display: none;
+            width: 420px;
+            height: 560px;
+            background: rgba(11, 17, 28, 0.98);
+            border: 2px solid var(--royal-gold);
+            box-shadow: 0 0 45px rgba(212, 175, 55, 0.35);
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(20px);
+        }
+
+        .quill-window-header {
+            background: #080b12;
+            color: var(--royal-gold);
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--royal-gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+        }
+
+        .writing-desk {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .ink-scroll-box {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 16px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .ink-scroll-box.user-query {
+            border-left: 3px solid var(--ink-blue);
+            color: var(--ink-blue);
+            direction: ltr;
+            text-align: left;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 13px;
+        }
+
+        .ink-scroll-box.ai-response {
+            border-right: 4px solid var(--royal-gold);
+            color: var(--text-gold);
+            direction: rtl;
+            text-align: right;
+            font-family: 'Amiri', serif;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .quill-nib-animation {
+            font-size: 13px;
+            color: var(--royal-gold);
+            font-style: italic;
             display: flex;
             align-items: center;
             gap: 8px;
+            margin-bottom: 8px;
+            font-family: 'Amiri', serif;
         }
 
-        .telemetry-status {
-            color: var(--cyan-neon);
-            font-weight: 600;
-            text-shadow: 0 0 8px var(--cyan-neon);
+        .ink-input-area {
+            padding: 14px;
+            background: #080b12;
+            border-top: 1px solid var(--royal-gold);
+            display: flex;
+            gap: 10px;
         }
 
-        @media (max-width: 768px) {
-            .volcanic-header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 20px;
-            }
-
-            .header-title {
-                font-size: 18px;
-            }
-
-            .matrix-main {
-                grid-template-columns: 1fr;
-                padding: 15px;
-            }
-
-            .message-content {
-                max-width: 90%;
-            }
-
-            .telemetry-panel {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .lang-btn, .model-selector {
-                width: 100%;
-            }
+        .ink-input {
+            flex: 1;
+            background: #111827;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            padding: 10px 14px;
+            font-family: 'Amiri', serif;
+            font-size: 15px;
+            color: var(--text-gold);
+            outline: none;
+            direction: rtl;
         }
 
-        .hidden {
-            display: none !important;
+        .ink-input:focus {
+            border-color: var(--royal-gold);
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-dip-ink {
+            background: transparent;
+            color: var(--royal-gold);
+            border: 1px solid var(--royal-gold);
+            padding: 8px 18px;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-dip-ink:hover {
+            background: var(--royal-gold);
+            color: #080b12;
+            box-shadow: 0 0 15px var(--royal-gold);
         }
     </style>
 </head>
 <body>
 
-<div class="matrix-container">
-    <div class="volcanic-header">
-        <div class="header-title">⚡ VOLCANIC OPERATIONAL MATRIX ⚡</div>
-        <div class="header-status">
-            <div class="status-indicator">
-                <div class="status-dot"></div>
-                <span>BOT: CH. MUJAHID HUSSAIN</span>
-            </div>
-            <div class="status-indicator">
-                <div class="status-dot" style="background: #00ff00;"></div>
-                <span>SYSTEM: ONLINE</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="matrix-main">
-        <div class="operational-nodes">
-            <div class="inode">
-                <div class="inode-title">⚡ INODE_ALPHAI</div>
-                <div class="inode-status">
-                    Robotic AI Assistant configured.<br>
-                    <span class="inode-status-active">✓ Models: 500+ Available</span><br>
-                    Language matrix: 50+ instances loaded.<br>
-                    <span class="inode-status-active">✓ Operational Status: 100%</span>
-                </div>
-            </div>
-
-            <div class="inode">
-                <div class="inode-title">📊 INODE_TELEMETRY</div>
-                <div class="inode-status">
-                    Real-time data ingestion active.<br>
-                    <span class="inode-status-active">✓ Channels: All Secure</span><br>
-                    Continuous monitoring engaged.<br>
-                    Manufacturing singularity fed.
-                </div>
-            </div>
-
-            <div class="inode">
-                <div class="inode-title">✒️ INODE_QUILL</div>
-                <div class="inode-status">
-                    Portfolio & Creative Hub active.<br>
-                    <span class="inode-status-active">✓ Branding Module: Ready</span><br>
-                    Media broadcasting prepared.<br>
-                    Archival systems synchronized.
-                </div>
-            </div>
-
-            <div class="inode">
-                <div class="inode-title">🌋 INODE_VOLCANIC</div>
-                <div class="inode-status">
-                    Operational status monitoring.<br>
-                    <span class="inode-status-active">✓ System Load: Optimal</span><br>
-                    Robotic gears spinning at 100%.<br>
-                    Neural nodes firing synchronously.
-                </div>
-            </div>
-
-            <div class="inode">
-                <div class="inode-title">🔐 INODE_SOVEREIGNTY</div>
-                <div class="inode-status">
-                    Encryption protocols active.<br>
-                    <span class="inode-status-active">✓ Security Level: Absolute</span><br>
-                    All webhooks verified & encrypted.<br>
-                    Truth & transparency embedded.
-                </div>
-            </div>
-        </div>
-
-        <div class="chat-interface">
-            <div class="chat-header">
-                <div class="chat-bot-name">
-                    <div class="chat-bot-indicator"></div>
-                    <span>BOT: CH. MUJAHID HUSSAIN [ONLINE]</span>
-                </div>
-            </div>
-
-            <div class="chat-messages" id="chatMessages">
-                <div class="message system">
-                    <div class="message-content">
-                        ⚡ VOLCANIC OPERATIONAL MATRIX INITIALIZED ⚡<br>
-                        Robotic core systems operational at 100%
-                    </div>
-                </div>
-                <div class="message bot">
-                    <div class="message-content">
-                        Greetings. I am the robotic AI assistant for Choudhary Mujahid Hussain. How may I assist your query today? All channels secure. ✓
-                    </div>
-                </div>
-            </div>
-
-            <div class="chat-input-area">
-                <div class="controls" id="languageSelector"></div>
-                <div class="input-row">
-                    <select id="modelSelect" class="model-selector"></select>
-                </div>
-                <div class="input-row">
-                    <input 
-                        type="text" 
-                        id="chatInput" 
-                        class="chat-input" 
-                        placeholder="AI query..." 
-                        autocomplete="off"
-                    >
-                    <button id="sendBtn" class="send-btn">SEND</button>
-                </div>
-            </div>
-        </div>
+<div class="omni-container">
+    <div class="master-header">
+        <h1>✒️ THE ROYAL INK & QUILL ARCHIVE</h1>
+        <h2>// CHOUDHARY MUJAHID HUSSAIN // ARTISANAL WISDOM & MEDIA MATRIX</h2>
     </div>
 
     <div class="telemetry-panel">
-        <div class="telemetry-item">
-            <span>TELEMETRY:</span>
-            <span class="telemetry-status">✓ ACTIVE</span>
+        <span style="color: var(--royal-gold); font-weight: bold;">[شاہانہ دستاویز اور ریکارڈ تصدیق شدہ]</span><br>
+        <strong>بانی و ڈائریکٹر :</strong> چوہدری مجاہد حسین (سینئر جرنلسٹ اور کرائم رپورٹر، لاہور)<br>
+        <strong>ادارہ :</strong> ایپکس برینڈنگ ہب اور گرین ہوپ فاؤنڈیشن
+    </div>
+
+    <h3 class="section-title">📜 فعال تخلیقی شعبہ جات اور نوڈز</h3>
+    <div class="matrix-grid">
+        <div class="node-card">
+            <h4>[برینڈنگ اور ڈیجیٹل حب]</h4>
+            <p>جدید ترین برینڈنگ سلوشنز، ڈیجیٹل میڈیا پروڈکشن اور آن لائن پورٹ فولیو مینجمنٹ۔</p>
+            <button class="btn-cyber">مشاہدہ کریں</button>
         </div>
-        <div class="telemetry-item">
-            <span>ENCRYPTION:</span>
-            <span class="telemetry-status">✓ VERIFIED</span>
+        <div class="node-card">
+            <h4>[صحافتی کتب خانہ]</h4>
+            <p>تحقیقی رپورٹس، کرائم واچ پنجاب کے مستند مضامین اور ڈیجیٹل براڈکاسٹنگ آرکائیو۔</p>
+            <button class="btn-cyber">مطالعہ کریں</button>
         </div>
-        <div class="telemetry-item">
-            <span>MATRIX STATUS:</span>
-            <span class="telemetry-status">✓ 100% OPTIMAL</span>
+    </div>
+
+    <div class="alphabet-matrix-item">
+        <h4>[روایتی قلم اور حکمت کا فلسفہ]</h4>
+        <p>ٹیکنالوجی کی اس دور میں روایتی اقدار، سنہری خطاطی اور علم و قلم کی حرمت کو زندہ رکھنا چوہدری مجاہد حسین کے اس ڈیجیٹل پلیٹ فارم کا بنیادی مقصد ہے۔</p>
+    </div>
+
+    <div class="telemetry-panel" style="text-align: center; margin-top: 30px;">
+        <span style="color: var(--ink-blue);">نظامِ کار: 100% فعال // شاہانہ قلم خدمت کے لیے تیار ہے</span>
+    </div>
+</div>
+
+<!-- Quill & Inkwell Floating Station Widget -->
+<div id="quill-station-widget">
+    <button id="quill-open-btn" class="quill-toggle-btn">
+        ✒️ شاہانہ قلم اور دُوات
+    </button>
+    
+    <div id="quill-window" class="quill-window">
+        <div class="quill-window-header">
+            <span>// سنہری قلم اور دُواتِ سیاہی</span>
+            <button id="quill-close-btn" style="background: transparent; border: none; color: var(--royal-gold); cursor: pointer; font-size: 16px; font-weight: bold;">✕</button>
         </div>
-        <div class="telemetry-item">
-            <span>CH. MUJAHID PROTOCOL:</span>
-            <span class="telemetry-status">✓ AUTHORIZED</span>
+        
+        <div id="writing-desk" class="writing-desk">
+            <div class="ink-scroll-box ai-response">
+                <div class="quill-nib-animation">✒️ قلم دُوات سے سیاہی چوس رہا ہے...</div>
+                خوش آمدید! چودھری مجاہد حسین کے اس شاہانہ مرکز میں آپ کا استقبال ہے۔ بتائیے، آج قلم سے کیا رقم کیا جائے؟
+            </div>
+        </div>
+        
+        <div class="ink-input-area">
+            <input type="text" id="ink-input" placeholder="یہاں اپنا سوال یا حکم لکھیں..." class="ink-input">
+            <button id="ink-send-btn" class="btn-dip-ink">تحریر</button>
         </div>
     </div>
 </div>
 
 <script>
-    let chatHistory = [];
-    let selectedModel = 'claude-opus';
-    let selectedLanguage = 'en';
-    let isLoading = false;
-    let hasPuter = false;
+const quillOpenBtn = document.getElementById('quill-open-btn');
+const quillCloseBtn = document.getElementById('quill-close-btn');
+const quillWindow = document.getElementById('quill-window');
+const writingDesk = document.getElementById('writing-desk');
+const inkInput = document.getElementById('ink-input');
+const inkSendBtn = document.getElementById('ink-send-btn');
 
-    const LANGUAGES = {
-        'en': 'English',
-        'ur': 'اردو',
-        'ar': 'العربية',
-        'pa': 'پنجابی',
-        'fr': 'Français',
-        'es': 'Español'
-    };
+quillOpenBtn.onclick = () => { quillWindow.style.display = 'flex'; quillOpenBtn.style.display = 'none'; };
+quillCloseBtn.onclick = () => { quillWindow.style.display = 'none'; quillOpenBtn.style.display = 'block'; };
 
-    const MOCK_RESPONSES = {
-        'ur': 'میں آپ کے سوال کو سمجھ رہا ہوں۔ یہ ایک طاقتور robotic AI system ہے۔',
-        'en': 'Processing your query through the Volcanic Operational Matrix. All systems optimal.',
-        'ar': 'معالجة استفسارك من خلال مصفوفة التشغيل البركانية.',
-        'pa': 'توہاڑی پچھ کو سمجھیا جا رہا اے۔',
-        'fr': 'Traitement de votre requête via la matrice opérationnelle volcanique.',
-        'es': 'Procesando su consulta a través de la matriz operacional volcánica.'
-    };
+function appendInkMessage(text, isUser) {
+    const box = document.createElement('div');
+    box.className = isUser ? 'ink-scroll-box user-query' : 'ink-scroll-box ai-response';
+    box.innerText = text;
+    writingDesk.appendChild(box);
+    writingDesk.scrollTop = writingDesk.scrollHeight;
+}
 
-    // INITIALIZATION
-    window.addEventListener('load', () => {
-        setupLanguageSelector();
-        loadModels();
-        setupEventListeners();
-        checkPuter();
-    });
-
-    function setupLanguageSelector() {
-        const container = document.getElementById('languageSelector');
-        Object.entries(LANGUAGES).forEach(([code, name]) => {
-            const btn = document.createElement('button');
-            btn.className = 'lang-btn' + (code === 'en' ? ' active' : '');
-            btn.textContent = name;
-            btn.onclick = () => selectLanguage(code, btn);
-            container.appendChild(btn);
-        });
+function getRoyalResponse(query) {
+    const q = query.toLowerCase();
+    if(q.includes('mujahid') || q.includes('مجاہد') || q.includes('owner')) {
+        return "چودھری مجاہد حسین اس ادارہِ عالیہ اور ایپکس برینڈنگ ہب کے بانی اور سپریم ڈائریکٹر ہیں، جو لاہور میں صحافت اور تخلیقی فن کے امتزاج کا استعارہ ہیں۔";
+    } else if(q.includes('pen') || q.includes('قلم') || q.includes('سیاہی') || q.includes('دوات')) {
+        return "یہ سنہری قلم اور سیاہی کی دُوات حکمت، دانش اور ڈیجیٹل تخلیق کے انمٹ نقوش ثبت کرنے کے لیے ہمیشہ مستعد ہے۔";
+    } else if(q.includes('apex') || q.includes('ایپکس')) {
+        return "ایپکس برینڈنگ ہب ڈیجیٹل میڈیا، برانڈنگ اور جدید ترین ڈیجیٹل سلوشنز کا ایک بین الاقوامی معیار ہے۔";
+    } else {
+        return "آپ کا فرمان '" + query + "' دُوات سے سیاہی لے کر سنہری حروف میں اسکرین پر رقم کر دیا گیا ہے۔ تمام نظامِ کار مکمل طور پر فعال ہیں۔";
     }
+}
 
-    function selectLanguage(code, btn) {
-        selectedLanguage = code;
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-    }
+async function handleInkWriting() {
+    const text = inkInput.value.trim();
+    if(!text) return;
+    
+    appendInkMessage(text, true);
+    inkInput.value = "";
+    
+    // Quill Nib animation status
+    const statusBox = document.createElement('div');
+    statusBox.className = 'ink-scroll-box ai-response';
+    statusBox.innerHTML = '<div class="quill-nib-animation">✒️ قلم سیاہی میں ڈوب کر تحریر رقم کر رہا ہے...</div>';
+    writingDesk.appendChild(statusBox);
+    writingDesk.scrollTop = writingDesk.scrollHeight;
+    
+    setTimeout(() => {
+        writingDesk.removeChild(statusBox);
+        const reply = getRoyalResponse(text);
+        appendInkMessage(reply, false);
+    }, 900);
+}
 
-    function loadModels() {
-        const select = document.getElementById('modelSelect');
-        const models = [
-            { name: 'Claude Opus', id: 'claude-opus' },
-            { name: 'Claude Sonnet', id: 'claude-sonnet' },
-            { name: 'GPT-4', id: 'gpt-4' },
-            { name: 'GPT-3.5 Turbo', id: 'gpt-35' },
-            { name: 'Gemini Pro', id: 'gemini-pro' },
-            { name: 'Llama 2', id: 'llama-2' },
-            { name: 'Mistral', id: 'mistral' }
-        ];
-
-        models.forEach(model => {
-            const option = document.createElement('option');
-            option.value = model.id;
-            option.textContent = model.name;
-            if (model.id === 'claude-opus') option.selected = true;
-            select.appendChild(option);
-        });
-
-        select.addEventListener('change', (e) => {
-            selectedModel = e.target.value;
-        });
-    }
-
-    function setupEventListeners() {
-        document.getElementById('sendBtn').addEventListener('click', sendMessage);
-        document.getElementById('chatInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !isLoading) sendMessage();
-        });
-    }
-
-    async function checkPuter() {
-        if (typeof puter !== 'undefined') {
-            try {
-                const isSignedIn = await puter.auth.isSignedIn();
-                if (isSignedIn) {
-                    hasPuter = true;
-                    console.log('✓ Puter.js connected');
-                }
-            } catch (e) {
-                console.log('Puter.js available but not authenticated');
-            }
-        } else {
-            console.log('Running in standalone mode (no Puter.js)');
-        }
-    }
-
-    async function sendMessage() {
-        const input = document.getElementById('chatInput');
-        const message = input.value.trim();
-        
-        if (!message || isLoading) return;
-        
-        isLoading = true;
-        document.getElementById('sendBtn').disabled = true;
-        
-        chatHistory.push({ role: 'user', content: message });
-        input.value = '';
-        
-        const messagesDiv = document.getElementById('chatMessages');
-        
-        const userMsgEl = document.createElement('div');
-        userMsgEl.className = 'message user';
-        userMsgEl.innerHTML = `<div class="message-content">${escapeHtml(message)}</div>`;
-        messagesDiv.appendChild(userMsgEl);
-        
-        const typingEl = document.createElement('div');
-        typingEl.className = 'message bot';
-        typingEl.innerHTML = '<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
-        messagesDiv.appendChild(typingEl);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        
-        try {
-            let botResponse;
-            
-            if (hasPuter && typeof puter !== 'undefined') {
-                const response = await puter.ai.chat({
-                    messages: chatHistory,
-                    model: selectedModel
-                });
-                botResponse = response.message.content;
-            } else {
-                await new Promise(r => setTimeout(r, 1000));
-                botResponse = MOCK_RESPONSES[selectedLanguage] || MOCK_RESPONSES['en'];
-            }
-            
-            chatHistory.push({ role: 'assistant', content: botResponse });
-            
-            messagesDiv.removeChild(typingEl);
-            const botMsgEl = document.createElement('div');
-            botMsgEl.className = 'message bot';
-            botMsgEl.innerHTML = `<div class="message-content">${escapeHtml(botResponse)}</div>`;
-            messagesDiv.appendChild(botMsgEl);
-        } catch (error) {
-            console.error('Error:', error);
-            messagesDiv.removeChild(typingEl);
-            const errorMsgEl = document.createElement('div');
-            errorMsgEl.className = 'message system';
-            errorMsgEl.innerHTML = `<div class="message-content">⚠️ System processing query (offline mode)</div>`;
-            messagesDiv.appendChild(errorMsgEl);
-        } finally {
-            isLoading = false;
-            document.getElementById('sendBtn').disabled = false;
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            input.focus();
-        }
-    }
-
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
+inkSendBtn.onclick = handleInkWriting;
+inkInput.onkeypress = (e) => { if(e.key === 'Enter') handleInkWriting(); };
 </script>
 
 </body>
